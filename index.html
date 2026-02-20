@@ -53,7 +53,7 @@ h1 {
 .work {
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(255,255,255,0.05); /* лёгкая светлая тень */
+    box-shadow: 0 8px 20px rgba(255,255,255,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s, transform 0.6s;
     opacity: 0;
     transform: translateY(40px);
@@ -70,6 +70,17 @@ h1 {
 }
 
 /* ======= Адаптивное содержимое блока ======= */
+.work-content {
+    position: relative;
+    width: 100%;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
 .work img,
 .work video {
     width: 100%;
@@ -79,13 +90,23 @@ h1 {
     object-fit: contain; /* сохраняем пропорции без обрезки */
 }
 
-.work-content {
+/* ======= Градиент-подсветка при наведении ======= */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255,0,150,0.4), rgba(0,150,255,0.4));
+    opacity: 0; /* невидимый по умолчанию */
+    transition: opacity 0.4s ease, filter 0.4s ease;
+    pointer-events: none;
+}
+
+.work-content:hover .overlay {
+    opacity: 1;
+    filter: blur(20px); /* эффект свечения */
 }
 
 /* ======= Обо мне ======= */
@@ -122,33 +143,39 @@ a {
   <div class="work">
     <div class="work-content">
       <img src="images/phone 9110.png" alt="Illustration project">
+      <div class="overlay"></div>
     </div>
   </div>
   <div class="work">
     <div class="work-content">
       <img src="images/ear.png" alt="Illustration project">
+      <div class="overlay"></div>
     </div>
   </div>
   <div class="work">
     <div class="work-content">
       <img src="images/droll-mobility.gif" alt="Animation GIF">
+      <div class="overlay"></div>
     </div>
   </div>
   <div class="work">
     <div class="work-content">
       <img src="images/motion1.gif" alt="Animation GIF">
+      <div class="overlay"></div>
     </div>
   </div>
   <div class="work">
     <div class="work-content">
       <img src="images/droll-delivery.gif" alt="Animation GIF">
+      <div class="overlay"></div>
     </div>
   </div>
   <div class="work">
     <div class="work-content">
       <video autoplay muted loop playsinline>
-        <source src="images/cubes.mp4" type="video/mp4">
+        <source src="images/plate_1.mp4" type="video/mp4">
       </video>
+      <div class="overlay"></div>
     </div>
   </div>
 </div>
