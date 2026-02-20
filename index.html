@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Тимур Султанмуратов — Иллюстратор и Motion Designer</title>
 
-<!-- Шрифт минималистичный -->
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -54,7 +53,14 @@ h1 {
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s, transform 0.6s;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.work.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .work:hover {
@@ -62,15 +68,25 @@ h1 {
     box-shadow: 0 15px 25px rgba(0,0,0,0.1);
 }
 
-/* Картинки и видео */
+/* Адаптивное содержимое блока */
 .work img,
 .work video {
     width: 100%;
-    height: auto;
+    max-height: 100%;
     display: block;
     border-radius: 12px;
+    object-fit: contain; /* сохраняем пропорции, не обрезаем */
 }
 
+/* Контейнер для видео/изображения с ограничением по высоте */
+.work-content {
+    width: 100%;
+    max-height: 300px; /* ограничение высоты */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 .about {
     max-width: 600px;
     line-height: 1.8;
@@ -102,24 +118,36 @@ a {
 
 <div class="grid">
   <div class="work">
+    <div class="work-content">
       <img src="images/phone 9110.png" alt="Illustration project">
+    </div>
   </div>
   <div class="work">
+    <div class="work-content">
       <img src="images/ear.png" alt="Illustration project">
+    </div>
   </div>
   <div class="work">
+    <div class="work-content">
       <img src="images/droll-mobility.gif" alt="Animation GIF">
+    </div>
   </div>
   <div class="work">
+    <div class="work-content">
       <img src="images/motion1.gif" alt="Animation GIF">
+    </div>
   </div>
   <div class="work">
+    <div class="work-content">
       <img src="images/droll-delivery.gif" alt="Animation GIF">
+    </div>
   </div>
   <div class="work">
+    <div class="work-content">
       <video autoplay muted loop playsinline>
-          <source src="images/plate_1.mp4" type="video/mp4">
+        <source src="images/plate_1.mp4" type="video/mp4">
       </video>
+    </div>
   </div>
 </div>
 
@@ -140,6 +168,25 @@ a {
 </footer>
 
 </div>
+
+<script>
+// Плавное появление блоков при скролле
+const works = document.querySelectorAll('.work');
+
+function showWorks() {
+    const triggerBottom = window.innerHeight * 0.85;
+    works.forEach(work => {
+        const workTop = work.getBoundingClientRect().top;
+        if (workTop < triggerBottom) {
+            work.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', showWorks);
+window.addEventListener('load', showWorks);
+</script>
+
 </body>
 </html>
 
