@@ -8,11 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+/* ======= Тёмная тема ======= */
 body {
     margin: 0;
     font-family: 'Space Grotesk', sans-serif;
-    background: #f8f8f8;
-    color: #111;
+    background: #121212; /* тёмный фон */
+    color: #f5f5f5; /* основной текст */
 }
 
 .container {
@@ -29,7 +30,7 @@ h1 {
 
 .subtitle {
     font-size: 18px;
-    color: #777;
+    color: #cccccc; /* подзаголовок светлее */
     margin-bottom: 100px;
 }
 
@@ -38,21 +39,21 @@ h1 {
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 40px;
-    color: #999;
+    color: #999999; /* текст раздела */
 }
 
-/* Сетка блоков */
+/* ======= Сетка блоков ======= */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
 }
 
-/* Блок работы */
+/* ======= Блок работы ======= */
 .work {
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(255,255,255,0.05); /* лёгкая светлая тень */
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s, transform 0.6s;
     opacity: 0;
     transform: translateY(40px);
@@ -65,45 +66,46 @@ h1 {
 
 .work:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 25px rgba(255,255,255,0.1);
 }
 
-/* Адаптивное содержимое блока */
+/* ======= Адаптивное содержимое блока ======= */
 .work img,
 .work video {
     width: 100%;
     max-height: 100%;
     display: block;
     border-radius: 12px;
-    object-fit: contain; /* сохраняем пропорции, не обрезаем */
+    object-fit: contain; /* сохраняем пропорции без обрезки */
 }
 
-/* Контейнер для видео/изображения с ограничением по высоте */
 .work-content {
     width: 100%;
-    max-height: 300px; /* ограничение высоты */
+    max-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
+
+/* ======= Обо мне ======= */
 .about {
     max-width: 600px;
     line-height: 1.8;
-    color: #555;
+    color: #cccccc;
 }
 
+/* ======= Footer ======= */
 footer {
     margin-top: 120px;
     font-size: 14px;
-    color: #777;
+    color: #cccccc;
 }
 
 a {
-    color: #111;
+    color: #f5f5f5;
     text-decoration: none;
-    border-bottom: 1px solid #111;
-    padding-bottom: 2px;
+    border-bottom: 1px solid #f5f5f5;
 }
 </style>
 </head>
@@ -189,4 +191,3 @@ window.addEventListener('load', showWorks);
 
 </body>
 </html>
-
