@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Тимур Султанмуратов — Иллюстратор и Motion Designer</title>
+<title>Timur Nizamov — Illustrator & Motion Designer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-/* ======= Тёмная тема ======= */
 body {
     margin: 0;
     font-family: 'Space Grotesk', sans-serif;
@@ -42,14 +41,14 @@ h1 {
     color: #999999;
 }
 
-/* ======= Сетка блоков ======= */
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
 }
 
-/* ======= Блок работы ======= */
+/* WORK CARD */
 .work {
     overflow: hidden;
     border-radius: 12px;
@@ -65,15 +64,14 @@ h1 {
 }
 
 .work:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(255,255,255,0.1);
+    box-shadow: 0 15px 30px rgba(255,255,255,0.12);
 }
 
-/* ======= Адаптивное содержимое блока ======= */
+/* CONTENT */
 .work-content {
     position: relative;
     width: 100%;
-    max-height: 300px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,45 +79,56 @@ h1 {
     border-radius: 12px;
 }
 
-/* ======= Градиент-подсветка сзади работы ======= */
+/* GRADIENT */
 .gradient-bg {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border-radius: 12px;
     background: linear-gradient(135deg, rgba(255,0,150,0.4), rgba(0,150,255,0.4));
     opacity: 0;
-    transition: opacity 0.4s ease, filter 0.4s ease;
-    filter: blur(30px);
-    z-index: 0; /* сзади работы */
+    transition: opacity 0.4s ease;
+    filter: blur(40px);
+    z-index: 0;
 }
 
-/* Работа поверх градиента */
-.work-content img,
-.work-content video {
-    width: 100%;
-    max-height: 100%;
+.work-content:hover .gradient-bg {
+    opacity: 1;
+}
+
+/* IMAGE */
+.work-content img {
+    width: 80%;
+    max-height: 260px;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+}
+
+/* ZOOM +50% */
+.work-content:hover img {
+    transform: scale(1.5);
+}
+
+/* VIDEO */
+.work-video {
+    width: 75%;
+    max-height: 240px;
     object-fit: contain;
     border-radius: 12px;
     position: relative;
     z-index: 1;
 }
 
-/* Активируем градиент при наведении */
-.work-content:hover .gradient-bg {
-    opacity: 1;
-}
-
-/* ======= Обо мне ======= */
+/* ABOUT */
 .about {
     max-width: 600px;
     line-height: 1.8;
     color: #cccccc;
 }
 
-/* ======= Footer ======= */
+/* FOOTER */
 footer {
     margin-top: 120px;
     font-size: 14px;
@@ -143,39 +152,30 @@ a {
 <div class="section-title">Работы</div>
 
 <div class="grid">
-  <!-- Пример PNG -->
+
   <div class="work">
     <div class="work-content">
       <div class="gradient-bg"></div>
       <img src="images/phone 9110.png" alt="Illustration project">
     </div>
   </div>
-  
+
   <div class="work">
     <div class="work-content">
       <div class="gradient-bg"></div>
       <img src="images/ear.png" alt="Illustration project">
     </div>
   </div>
-  
-  
-  </div>
-  
-  
-  </div>
-  
- 
-  </div>
-  
-  <!-- MP4 -->
+
   <div class="work">
     <div class="work-content">
       <div class="gradient-bg"></div>
-      <video autoplay muted loop playsinline>
+      <video class="work-video" autoplay muted loop playsinline>
         <source src="images/complete.mp4" type="video/mp4">
       </video>
     </div>
   </div>
+
 </div>
 
 <div style="margin-top:100px">
@@ -197,7 +197,6 @@ a {
 </div>
 
 <script>
-// Плавное появление блоков при скролле
 const works = document.querySelectorAll('.work');
 
 function showWorks() {
