@@ -41,22 +41,31 @@ h1 {
     color: #999;
 }
 
-.grid {
+..grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* адаптивная сетка */
+    gap: 40px; /* расстояние между блоками */
+}
+
+.work {
+    overflow: hidden; /* чтобы картинки и видео не вылезали */
+    border-radius: 12px; /* закругление блоков */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05); /* лёгкая тень для глубины */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work:hover {
+    transform: translateY(-5px); /* небольшой подъём при наведении */
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
 }
 
 .work img,
 .work video {
     width: 100%;
+    height: auto;
+    display: block;
     border-radius: 12px;
-    transition: 0.4s ease;
-}
-
-.work:hover img,
-.work:hover video {
-    transform: scale(1.02);
+};
 }
 
 .about {
