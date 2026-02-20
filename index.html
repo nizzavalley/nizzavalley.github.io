@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Тимур Султанмуратов — Иллюстратор и Motion Designer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- Шрифт минималистичный -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -41,31 +42,33 @@ h1 {
     color: #999;
 }
 
-..grid {
+/* Сетка блоков */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* адаптивная сетка */
-    gap: 40px; /* расстояние между блоками */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
 }
 
+/* Блок работы */
 .work {
-    overflow: hidden; /* чтобы картинки и видео не вылезали */
-    border-radius: 12px; /* закругление блоков */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05); /* лёгкая тень для глубины */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .work:hover {
-    transform: translateY(-5px); /* небольшой подъём при наведении */
+    transform: translateY(-5px);
     box-shadow: 0 15px 25px rgba(0,0,0,0.1);
 }
 
+/* Картинки и видео */
 .work img,
 .work video {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 12px;
-};
 }
 
 .about {
@@ -90,42 +93,43 @@ a {
 </head>
 
 <body>
-
 <div class="container">
 
-<h1>Timur Nizamov </h1>
+<h1>Timur Nizamov</h1>
 <p class="subtitle">Vector Illustrator & Motion Designer</p>
 
 <div class="section-title">Работы</div>
 
 <div class="grid">
-<div class="work">
-    <img src="images/phone 9110.png" alt="Illustration project">
-</div>
-<div class="work">
-<img src="images/work1.jpg" alt="">
-</div>
-<div class="work">
-  <img src="images/ear.png" alt="Новое изображение">
-</div>
-<div class="work">
-<img src="images/work2.jpg" alt="">
-</div>
-<div class="work">
-  <img src="images/droll-mobility.gif" alt="Анимация">
-</div>
-<div class="work">
-<img src="images/motion1.gif" alt="">
-</div>
-<div class="work">
-  <img src="images/droll-delivery" alt="Анимация">
-</div>
-<div class="work">
-<img src="images/work3.jpg" alt="">
-</div>
-<video autoplay muted loop playsinline>
-  <source src="images/plate_1.mp4" type="video/mp4">
-</video>
+  <div class="work">
+      <img src="images/phone 9110.png" alt="Illustration project">
+  </div>
+  <div class="work">
+      <img src="images/work1.jpg" alt="Work 1">
+  </div>
+  <div class="work">
+      <img src="images/ear.png" alt="Illustration project">
+  </div>
+  <div class="work">
+      <img src="images/work2.jpg" alt="Work 2">
+  </div>
+  <div class="work">
+      <img src="images/droll-mobility.gif" alt="Animation GIF">
+  </div>
+  <div class="work">
+      <img src="images/motion1.gif" alt="Animation GIF">
+  </div>
+  <div class="work">
+      <img src="images/droll-delivery.gif" alt="Animation GIF">
+  </div>
+  <div class="work">
+      <img src="images/work3.jpg" alt="Work 3">
+  </div>
+  <div class="work">
+      <video autoplay muted loop playsinline>
+          <source src="images/plate_1.mp4" type="video/mp4">
+      </video>
+  </div>
 </div>
 
 <div style="margin-top:100px">
@@ -146,6 +150,5 @@ a {
 </footer>
 
 </div>
-
 </body>
 </html>
