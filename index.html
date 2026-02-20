@@ -13,10 +13,11 @@ body {
     font-family: 'Space Grotesk', sans-serif;
     background: #121212;
     color: #f5f5f5;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: auto;
     padding: 120px 20px;
 }
@@ -37,20 +38,21 @@ h1 {
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     color: #999999;
 }
 
-/* GRID ДЛЯ ИЗОБРАЖЕНИЙ */
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 60px;
+    gap: 80px;
 }
 
-/* WORK */
+/* WORK CARD */
 .work {
     position: relative;
+    z-index: 1;
     transition: opacity 0.6s ease, transform 0.6s ease;
     opacity: 0;
     transform: translateY(40px);
@@ -61,6 +63,12 @@ h1 {
     transform: translateY(0);
 }
 
+/* При hover поднимаем слой */
+.work:hover {
+    z-index: 50;
+}
+
+/* CONTENT */
 .work-content {
     position: relative;
     display: flex;
@@ -68,14 +76,14 @@ h1 {
     align-items: center;
 }
 
-/* GRADIENT */
+/* GRADIENT GLOW */
 .gradient-bg {
     position: absolute;
-    width: 110%;
-    height: 110%;
+    width: 130%;
+    height: 130%;
     background: linear-gradient(135deg, rgba(255,0,150,0.4), rgba(0,150,255,0.4));
     opacity: 0;
-    filter: blur(60px);
+    filter: blur(80px);
     transition: opacity 0.4s ease;
     z-index: 0;
 }
@@ -90,27 +98,27 @@ h1 {
     height: auto;
     object-fit: contain;
     position: relative;
-    z-index: 1;
-    transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+    will-change: transform;
 }
 
-/* Увеличение без обрезания */
-.work-content:hover img {
+/* Zoom + выход поверх */
+.work:hover img {
     transform: scale(1.5);
 }
 
 /* VIDEO SECTION */
 .video-section {
-    margin-top: 120px;
+    margin-top: 140px;
     display: flex;
     justify-content: center;
 }
 
 .work-video {
     width: 60%;
-    max-width: 700px;
-    object-fit: contain;
-    border-radius: 16px;
+    max-width: 800px;
+    border-radius: 20px;
 }
 
 /* ABOUT */
@@ -118,6 +126,7 @@ h1 {
     max-width: 600px;
     line-height: 1.8;
     color: #cccccc;
+    margin-top: 140px;
 }
 
 /* FOOTER */
@@ -143,7 +152,6 @@ a {
 
 <div class="section-title">Работы</div>
 
-<!-- ТОЛЬКО ИЗОБРАЖЕНИЯ -->
 <div class="grid">
 
   <div class="work">
@@ -162,20 +170,17 @@ a {
 
 </div>
 
-<!-- ВИДЕО НИЖЕ -->
 <div class="video-section">
     <video class="work-video" autoplay muted loop playsinline>
         <source src="images/complete.mp4" type="video/mp4">
     </video>
 </div>
 
-<div style="margin-top:120px">
 <div class="section-title">Обо мне</div>
 <p class="about">
 Я создаю векторные иллюстрации и анимацию для брендов, digital-проектов и соцсетей. 
 Работаю с формой, цветом и движением, чтобы делать визуал живым и запоминающимся.
 </p>
-</div>
 
 <footer>
 <p>Связаться: <a href="https://t.me/badkids_FO" target="_blank">Telegram</a> | <a href="mailto:badkidsfromoregon@yandex.ru">Email</a></p>
@@ -188,6 +193,7 @@ a {
 </div>
 
 <script>
+/* Scroll reveal */
 const works = document.querySelectorAll('.work');
 
 function showWorks() {
@@ -202,6 +208,27 @@ function showWorks() {
 
 window.addEventListener('scroll', showWorks);
 window.addEventListener('load', showWorks);
+
+/* Parallax */
+document.querySelectorAll('.work').forEach(card => {
+    const img = card.querySelector('img');
+
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        img.style.transform = `
+            scale(1.5)
+            rotateY(${x * 8}deg)
+            rotateX(${-y * 8}deg)
+        `;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        img.style.transform = "scale(1)";
+    });
+});
 </script>
 
 </body>
