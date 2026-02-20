@@ -41,19 +41,17 @@ h1 {
     color: #999999;
 }
 
-/* GRID */
+/* GRID ДЛЯ ИЗОБРАЖЕНИЙ */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 60px;
 }
 
-/* WORK CARD */
+/* WORK */
 .work {
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(255,255,255,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s, transform 0.6s;
+    position: relative;
+    transition: opacity 0.6s ease, transform 0.6s ease;
     opacity: 0;
     transform: translateY(40px);
 }
@@ -63,32 +61,22 @@ h1 {
     transform: translateY(0);
 }
 
-.work:hover {
-    box-shadow: 0 15px 30px rgba(255,255,255,0.12);
-}
-
-/* CONTENT */
 .work-content {
     position: relative;
-    width: 100%;
-    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    border-radius: 12px;
 }
 
 /* GRADIENT */
 .gradient-bg {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
+    width: 110%;
+    height: 110%;
     background: linear-gradient(135deg, rgba(255,0,150,0.4), rgba(0,150,255,0.4));
     opacity: 0;
+    filter: blur(60px);
     transition: opacity 0.4s ease;
-    filter: blur(40px);
     z-index: 0;
 }
 
@@ -98,27 +86,31 @@ h1 {
 
 /* IMAGE */
 .work-content img {
-    width: 80%;
-    max-height: 260px;
+    width: 100%;
+    height: auto;
     object-fit: contain;
     position: relative;
     z-index: 1;
     transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
 }
 
-/* ZOOM +50% */
+/* Увеличение без обрезания */
 .work-content:hover img {
     transform: scale(1.5);
 }
 
-/* VIDEO */
+/* VIDEO SECTION */
+.video-section {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+}
+
 .work-video {
-    width: 75%;
-    max-height: 240px;
+    width: 60%;
+    max-width: 700px;
     object-fit: contain;
-    border-radius: 12px;
-    position: relative;
-    z-index: 1;
+    border-radius: 16px;
 }
 
 /* ABOUT */
@@ -151,6 +143,7 @@ a {
 
 <div class="section-title">Работы</div>
 
+<!-- ТОЛЬКО ИЗОБРАЖЕНИЯ -->
 <div class="grid">
 
   <div class="work">
@@ -167,18 +160,16 @@ a {
     </div>
   </div>
 
-  <div class="work">
-    <div class="work-content">
-      <div class="gradient-bg"></div>
-      <video class="work-video" autoplay muted loop playsinline>
-        <source src="images/complete.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-
 </div>
 
-<div style="margin-top:100px">
+<!-- ВИДЕО НИЖЕ -->
+<div class="video-section">
+    <video class="work-video" autoplay muted loop playsinline>
+        <source src="images/complete.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div style="margin-top:120px">
 <div class="section-title">Обо мне</div>
 <p class="about">
 Я создаю векторные иллюстрации и анимацию для брендов, digital-проектов и соцсетей. 
