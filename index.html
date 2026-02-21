@@ -9,44 +9,168 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
-body{background:#0b0b0b;color:white;padding:64px;overflow-x:hidden;}
+body{
+background:#050505;
+color:white;
+padding:80px;
+overflow-x:hidden;
+}
 
 /* HERO */
-.hero h1{font-size:80px;font-weight:800;line-height:1;}
+.hero h1{
+font-size:92px;
+font-weight:800;
+letter-spacing:-3px;
+line-height:.95;
+}
 .hero span{color:#ff2f92;}
-.hero p{font-size:22px;color:#aaa;max-width:700px;margin-top:20px;}
-.hero .cta{margin-top:32px;display:inline-block;padding:14px 32px;background:#ff2f92;border-radius:40px;color:white;text-decoration:none;font-weight:600;}
+.hero p{
+font-size:22px;
+color:#aaa;
+max-width:720px;
+margin-top:24px;
+}
+.hero .cta{
+margin-top:36px;
+display:inline-block;
+padding:16px 40px;
+background:#ff2f92;
+border-radius:60px;
+color:white;
+text-decoration:none;
+font-weight:600;
+}
 
-/* FEATURED */
-.section-title{margin-top:120px;font-size:32px;font-weight:700;}
+/* SECTION */
+.section-title{
+margin-top:140px;
+font-size:34px;
+font-weight:700;
+}
 
-/* GRID */
-.grid{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-.card{position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:#111;cursor:pointer;}
-.card img,.card video{width:100%;height:100%;object-fit:cover;transition:.6s;}
-.card:hover img,.card:hover video{transform:scale(1.07);}
-.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));}
-.card-title{position:absolute;bottom:20px;left:20px;font-size:18px;font-weight:600;opacity:0;transition:.3s;}
-.card:hover .card-title{opacity:1;}
+/* ULTRA PRO HORIZONTAL GRID */
+.projects-scroll{
+margin-top:40px;
+display:flex;
+gap:28px;
+overflow-x:auto;
+padding-bottom:20px;
+scroll-snap-type:x mandatory;
+}
+.projects-scroll::-webkit-scrollbar{height:8px;}
+.projects-scroll::-webkit-scrollbar-thumb{
+background:#222;border-radius:10px;
+}
 
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:999;}
-.modal-content{max-width:900px;width:90%;}
-.modal video{width:100%;border-radius:16px;}
-.modal-close{position:fixed;top:20px;right:30px;font-size:28px;cursor:pointer;}
+.project-card{
+position:relative;
+min-width:420px;
+height:560px;
+border-radius:26px;
+overflow:hidden;
+background:#111;
+cursor:pointer;
+scroll-snap-align:start;
+transition:.4s;
+}
+
+.project-card.large{min-width:720px;height:560px;}
+
+.project-card img,
+.project-card video{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s ease;
+filter:brightness(.8);
+}
+
+.project-card:hover img,
+.project-card:hover video{
+transform:scale(1.15);
+filter:brightness(1);
+}
+
+/* GLASS OVERLAY */
+.project-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.8));
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+padding:28px;
+backdrop-filter:blur(6px);
+opacity:0;
+transition:.4s;
+}
+
+.project-card:hover .project-overlay{opacity:1;}
+
+.project-title{font-size:24px;font-weight:700;}
+.project-desc{font-size:14px;color:#aaa;margin-top:6px;}
+.project-tags{display:flex;gap:10px;margin-top:14px;}
+.tag{
+font-size:12px;
+padding:6px 14px;
+background:rgba(255,255,255,.08);
+border-radius:30px;
+}
 
 /* ABOUT */
-.about{margin-top:140px;max-width:700px;font-size:20px;color:#bbb;}
+.about{
+margin-top:160px;
+max-width:760px;
+font-size:22px;
+color:#bbb;
+line-height:1.5;
+}
 
 /* FOOTER */
-footer{margin-top:140px;display:flex;justify-content:space-between;color:#777;}
-footer a{color:white;text-decoration:none;margin-right:16px;}
+footer{
+margin-top:160px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:#666;
+}
+footer a{
+color:white;
+text-decoration:none;
+margin-right:18px;
+font-size:16px;
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.92);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+.modal video{
+max-width:1200px;
+width:92%;
+border-radius:22px;
+}
+.modal-close{
+position:fixed;
+top:30px;
+right:40px;
+font-size:30px;
+cursor:pointer;
+}
 
 /* MOBILE */
 @media(max-width:900px){
 body{padding:24px;}
-.hero h1{font-size:52px;}
-.grid{grid-template-columns:1fr;}
+.hero h1{font-size:56px;}
+.projects-scroll{gap:18px;}
+.project-card{min-width:280px;height:420px;}
+.project-card.large{min-width:280px;height:420px;}
 }
 </style>
 </head>
@@ -56,42 +180,62 @@ body{padding:24px;}
 <!-- HERO -->
 <section class="hero">
 <h1>Timur <span>Nizamov</span></h1>
-<p>Motion Designer & 3D Illustrator creating bold visuals, playful characters and animations for brands and digital products.</p>
+<p>Motion designer & 3D illustrator creating bold cinematic visuals, playful characters and premium brand animations.</p>
 <a class="cta" href="#contact">Contact me</a>
 </section>
 
-<!-- FEATURED -->
-<div class="section-title">Featured Projects</div>
-<div class="grid">
+<!-- PROJECTS -->
+<div class="section-title">Selected Works</div>
 
-<div class="card" onclick="openModal('images/plate_1.mp4')">
-  <video muted loop playsinline poster="images/plate_preview.jpg"></video>
-  <div class="card-title">Plate Motion</div>
+<div class="projects-scroll">
+
+<!-- BIG HERO PROJECT -->
+<div class="project-card large" onclick="openModal('images/complete.mp4')">
+<video muted loop playsinline poster="images/complete.jpg"></video>
+<div class="project-overlay">
+<div class="project-title">Drollstyle Characters</div>
+<div class="project-desc">Stylized character animation for branding</div>
+<div class="project-tags">
+<div class="tag">3D</div>
+<div class="tag">Motion</div>
+<div class="tag">Character</div>
+</div>
+</div>
 </div>
 
-<div class="card" onclick="openModal('images/drollstyle.mp4')">
-  <img src="images/drollstyle.jpg">
-  <div class="card-title">Drollstyle Characters</div>
+<!-- NOKIA IMAGE -->
+<div class="project-card">
+<img src="images/phone_9110.png" loading="lazy">
+<div class="project-overlay">
+<div class="project-title">Nokia 9110 Concept</div>
+<div class="project-desc">Retro CGI product concept</div>
+<div class="project-tags">
+<div class="tag">CGI</div>
+<div class="tag">Product</div>
+</div>
+</div>
 </div>
 
-<div class="card" onclick="openModal('images/headphones.mp4')">
-  <img src="images/headphones.jpg">
-  <div class="card-title">Headphones Illustration</div>
+<!-- HEADPHONES -->
+<div class="project-card" onclick="openModal('images/headphones.mp4')">
+<video muted loop playsinline poster="images/headphones.jpg"></video>
+<div class="project-overlay">
+<div class="project-title">Headphones Illustration</div>
+<div class="project-desc">Minimal product motion visual</div>
+<div class="project-tags">
+<div class="tag">3D</div>
+<div class="tag">Advertising</div>
+</div>
+</div>
 </div>
 
-</div>
-
-<!-- ALL WORKS -->
-<div class="section-title">All Works</div>
-<div class="grid">
-<!-- копируй card блоки -->
 </div>
 
 <!-- ABOUT -->
 <section class="about">
 <p>
-I'm a motion designer and illustrator focused on playful characters, bold color and storytelling.  
-I help brands and digital products stand out through animation and visual identity.
+I’m a motion designer and 3D illustrator focused on cinematic storytelling, premium visual identity, and futuristic product visuals.  
+I help brands stand out through animation, CGI and digital experiences.
 </p>
 </section>
 
@@ -108,31 +252,31 @@ I help brands and digital products stand out through animation and visual identi
 <!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-close" onclick="closeModal()">✕</div>
-<div class="modal-content">
 <video id="modalVideo" controls></video>
-</div>
 </div>
 
 <script>
-// autoplay preview on hover
-document.querySelectorAll('.card video').forEach(v=>{
-  v.parentElement.addEventListener('mouseenter',()=>v.play());
-  v.parentElement.addEventListener('mouseleave',()=>{v.pause();v.currentTime=0;});
+// autoplay preview
+document.querySelectorAll('.project-card video').forEach(v=>{
+v.parentElement.addEventListener('mouseenter',()=>v.play());
+v.parentElement.addEventListener('mouseleave',()=>{
+v.pause();v.currentTime=0;
+});
 });
 
 // modal
 function openModal(src){
-  const m=document.getElementById('modal');
-  const v=document.getElementById('modalVideo');
-  v.src=src;
-  m.style.display='flex';
-  v.play();
+const m=document.getElementById('modal');
+const v=document.getElementById('modalVideo');
+v.src=src;
+m.style.display='flex';
+v.play();
 }
 function closeModal(){
-  const m=document.getElementById('modal');
-  const v=document.getElementById('modalVideo');
-  v.pause();v.src="";
-  m.style.display='none';
+const m=document.getElementById('modal');
+const v=document.getElementById('modalVideo');
+v.pause();v.src="";
+m.style.display='none';
 }
 </script>
 
