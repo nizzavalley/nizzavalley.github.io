@@ -1,234 +1,139 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timur Nizamov — Illustrator & Motion Designer</title>
+<title>Timur Nizamov — Motion Designer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    background: #121212;
-    color: #f5f5f5;
-    overflow-x: hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+body{background:#0b0b0b;color:white;padding:64px;overflow-x:hidden;}
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 120px 20px;
-}
+/* HERO */
+.hero h1{font-size:80px;font-weight:800;line-height:1;}
+.hero span{color:#ff2f92;}
+.hero p{font-size:22px;color:#aaa;max-width:700px;margin-top:20px;}
+.hero .cta{margin-top:32px;display:inline-block;padding:14px 32px;background:#ff2f92;border-radius:40px;color:white;text-decoration:none;font-weight:600;}
 
-h1 {
-    font-size: 56px;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    font-size: 18px;
-    color: #cccccc;
-    margin-bottom: 100px;
-}
-
-.section-title {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 60px;
-    color: #999999;
-}
+/* FEATURED */
+.section-title{margin-top:120px;font-size:32px;font-weight:700;}
 
 /* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 80px;
-}
+.grid{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.card{position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:#111;cursor:pointer;}
+.card img,.card video{width:100%;height:100%;object-fit:cover;transition:.6s;}
+.card:hover img,.card:hover video{transform:scale(1.07);}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));}
+.card-title{position:absolute;bottom:20px;left:20px;font-size:18px;font-weight:600;opacity:0;transition:.3s;}
+.card:hover .card-title{opacity:1;}
 
-/* WORK CARD */
-.work {
-    position: relative;
-    z-index: 1;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.work.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* При hover поднимаем слой */
-.work:hover {
-    z-index: 50;
-}
-
-/* CONTENT */
-.work-content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* GRADIENT GLOW */
-.gradient-bg {
-    position: absolute;
-    width: 130%;
-    height: 130%;
-    background: linear-gradient(135deg, rgba(255,0,150,0.4), rgba(0,150,255,0.4));
-    opacity: 0;
-    filter: blur(80px);
-    transition: opacity 0.4s ease;
-    z-index: 0;
-}
-
-.work-content:hover .gradient-bg {
-    opacity: 1;
-}
-
-/* IMAGE */
-.work-content img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    position: relative;
-    z-index: 2;
-    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
-    will-change: transform;
-}
-
-/* Zoom + выход поверх */
-.work:hover img {
-    transform: scale(1.5);
-}
-
-/* VIDEO SECTION */
-.video-section {
-    margin-top: 140px;
-    display: flex;
-    justify-content: center;
-}
-
-.work-video {
-    width: 60%;
-    max-width: 800px;
-    border-radius: 20px;
-}
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:999;}
+.modal-content{max-width:900px;width:90%;}
+.modal video{width:100%;border-radius:16px;}
+.modal-close{position:fixed;top:20px;right:30px;font-size:28px;cursor:pointer;}
 
 /* ABOUT */
-.about {
-    max-width: 600px;
-    line-height: 1.8;
-    color: #cccccc;
-    margin-top: 140px;
-}
+.about{margin-top:140px;max-width:700px;font-size:20px;color:#bbb;}
 
 /* FOOTER */
-footer {
-    margin-top: 120px;
-    font-size: 14px;
-    color: #cccccc;
-}
+footer{margin-top:140px;display:flex;justify-content:space-between;color:#777;}
+footer a{color:white;text-decoration:none;margin-right:16px;}
 
-a {
-    color: #f5f5f5;
-    text-decoration: none;
-    border-bottom: 1px solid #f5f5f5;
+/* MOBILE */
+@media(max-width:900px){
+body{padding:24px;}
+.hero h1{font-size:52px;}
+.grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h1>Timur Nizamov</h1>
-<p class="subtitle">Vector Illustrator & Motion Designer</p>
+<!-- HERO -->
+<section class="hero">
+<h1>Timur <span>Nizamov</span></h1>
+<p>Motion Designer & 3D Illustrator creating bold visuals, playful characters and animations for brands and digital products.</p>
+<a class="cta" href="#contact">Contact me</a>
+</section>
 
-<div class="section-title">Работы</div>
-
+<!-- FEATURED -->
+<div class="section-title">Featured Projects</div>
 <div class="grid">
 
-  <div class="work">
-    <div class="work-content">
-      <div class="gradient-bg"></div>
-      <img src="images/phone 9110.png" alt="Illustration project">
-    </div>
-  </div>
+<div class="card" onclick="openModal('images/plate_1.mp4')">
+  <video muted loop playsinline poster="images/plate_preview.jpg"></video>
+  <div class="card-title">Plate Motion</div>
+</div>
 
-  <div class="work">
-    <div class="work-content">
-      <div class="gradient-bg"></div>
-      <img src="images/ear.png" alt="Illustration project">
-    </div>
-  </div>
+<div class="card" onclick="openModal('images/drollstyle.mp4')">
+  <img src="images/drollstyle.jpg">
+  <div class="card-title">Drollstyle Characters</div>
+</div>
+
+<div class="card" onclick="openModal('images/headphones.mp4')">
+  <img src="images/headphones.jpg">
+  <div class="card-title">Headphones Illustration</div>
+</div>
 
 </div>
 
-<div class="video-section">
-    <video class="work-video" autoplay muted loop playsinline>
-        <source src="images/complete.mp4" type="video/mp4">
-    </video>
+<!-- ALL WORKS -->
+<div class="section-title">All Works</div>
+<div class="grid">
+<!-- копируй card блоки -->
 </div>
 
-<div class="section-title">Обо мне</div>
-<p class="about">
-Я создаю векторные иллюстрации и анимацию для брендов, digital-проектов и соцсетей. 
-Работаю с формой, цветом и движением, чтобы делать визуал живым и запоминающимся.
-</p>
-
-<footer>
-<p>Связаться: <a href="https://t.me/badkids_FO" target="_blank">Telegram</a> | <a href="mailto:badkidsfromoregon@yandex.ru">Email</a></p>
+<!-- ABOUT -->
+<section class="about">
 <p>
-<a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a> — 
-<a href="#">Behance</a>
+I'm a motion designer and illustrator focused on playful characters, bold color and storytelling.  
+I help brands and digital products stand out through animation and visual identity.
 </p>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+<div>
+<a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
+<a href="mailto:badkidsfromoregon@yandex.ru">Email</a>
+<a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a>
+</div>
+<div>© 2026 Timur Nizamov</div>
 </footer>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-close" onclick="closeModal()">✕</div>
+<div class="modal-content">
+<video id="modalVideo" controls></video>
+</div>
 </div>
 
 <script>
-/* Scroll reveal */
-const works = document.querySelectorAll('.work');
-
-function showWorks() {
-    const triggerBottom = window.innerHeight * 0.85;
-    works.forEach(work => {
-        const workTop = work.getBoundingClientRect().top;
-        if (workTop < triggerBottom) {
-            work.classList.add('show');
-        }
-    });
-}
-
-window.addEventListener('scroll', showWorks);
-window.addEventListener('load', showWorks);
-
-/* Parallax */
-document.querySelectorAll('.work').forEach(card => {
-    const img = card.querySelector('img');
-
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-        img.style.transform = `
-            scale(1.5)
-            rotateY(${x * 8}deg)
-            rotateX(${-y * 8}deg)
-        `;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        img.style.transform = "scale(1)";
-    });
+// autoplay preview on hover
+document.querySelectorAll('.card video').forEach(v=>{
+  v.parentElement.addEventListener('mouseenter',()=>v.play());
+  v.parentElement.addEventListener('mouseleave',()=>{v.pause();v.currentTime=0;});
 });
+
+// modal
+function openModal(src){
+  const m=document.getElementById('modal');
+  const v=document.getElementById('modalVideo');
+  v.src=src;
+  m.style.display='flex';
+  v.play();
+}
+function closeModal(){
+  const m=document.getElementById('modal');
+  const v=document.getElementById('modalVideo');
+  v.pause();v.src="";
+  m.style.display='none';
+}
 </script>
 
 </body>
