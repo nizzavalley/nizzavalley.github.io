@@ -3,107 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nizza Valley Portfolio</title>
+<title>Timur Nizamov — Motion Designer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body {
-  margin:0; font-family:sans-serif; background:#fff; color:#000;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+html{scroll-behavior:smooth;}
+body{
+background:#050505;
+color:white;
+padding:80px;
+overflow-x:hidden;
 }
 
-/* Projects Scroll */
-.projects-scroll {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+/* HERO */
+.hero h1{
+font-size:92px;
+font-weight:800;
+letter-spacing:-3px;
+line-height:.95;
+}
+.hero span{color:#ff2f92;}
+.hero p{
+font-size:22px;
+color:#aaa;
+max-width:720px;
+margin-top:24px;
+}
+.hero .cta{
+margin-top:36px;
+display:inline-block;
+padding:16px 44px;
+background:#ff2f92;
+border-radius:60px;
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+.hero .cta:hover{transform:scale(1.05);}
+
+/* SECTION */
+.section-title{
+margin-top:140px;
+font-size:34px;
+font-weight:700;
 }
 
-.project-card {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 10px;
+/* ULTRA PRO GRID V2 */
+.projects-scroll{
+margin-top:40px;
+display:flex;
+gap:32px;
+overflow-x:auto;
+padding-bottom:40px;
+scroll-snap-type:x mandatory;
+}
+.projects-scroll::-webkit-scrollbar{height:8px;}
+.projects-scroll::-webkit-scrollbar-thumb{
+background:#222;border-radius:10px;
 }
 
-.project-card.large {
-  flex: 1 1 100%;
-  max-height: 400px;
+/* CARDS */
+.project-card{
+position:relative;
+min-width:420px;
+height:560px;
+border-radius:30px;
+overflow:hidden;
+background:#111;
+cursor:pointer;
+scroll-snap-align:start;
+transition:.5s cubic-bezier(.2,.8,.2,1);
+box-shadow:0 40px 80px rgba(0,0,0,.6);
 }
+
+.project-card.large{min-width:760px;height:560px;}
 
 .project-card img,
-.project-card video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.project-card video{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1.2s ease;
+filter:brightness(.85);
 }
 
-/* Overlay */
-.project-overlay {
-  position: absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  background: rgba(0,0,0,0.6);
-  color:#fff;
-  padding:10px;
+.project-card:hover{
+transform:translateY(-12px) scale(1.02);
 }
 
-.project-title { font-weight:bold; font-size:18px; }
-.project-desc { font-size:14px; margin-top:5px; }
-.project-tags { display:flex; gap:5px; margin-top:5px; }
-.tag { background:#fff; color:#000; padding:2px 5px; border-radius:3px; font-size:12px; }
-
-/* About */
-.about { padding:20px; font-size:16px; line-height:1.5; }
-
-/* Footer */
-footer { padding:20px; text-align:center; background:#eee; }
-footer a { margin:0 10px; text-decoration:none; color:#000; }
-
-/* Modal */
-.modal {
-  display:none;
-  position:fixed;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.8);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-.modal video {
-  max-width:90%;
-  max-height:90%;
-}
-.modal-close {
-  position:absolute;
-  top:20px; right:20px;
-  font-size:30px;
-  color:#fff;
-  cursor:pointer;
+.project-card:hover img,
+.project-card:hover video{
+transform:scale(1.18);
+filter:brightness(1);
 }
 
-/* Hover play for videos */
-.project-card video {
-  pointer-events:none;
+/* GLASS OVERLAY */
+.project-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+padding:32px;
+backdrop-filter:blur(10px);
+opacity:0;
+transition:.5s;
 }
 
-/* MOBILE FIXES */
-max-width:768px{
-  .project-card img,
-  .project-card video {
-    object-fit: contain; /* на мобильных видно всю картинку/видео */
-  }
+.project-card:hover .project-overlay{opacity:1;}
+
+.project-title{font-size:26px;font-weight:700;}
+.project-desc{font-size:14px;color:#aaa;margin-top:6px;}
+.project-tags{display:flex;gap:10px;margin-top:14px;}
+.tag{
+font-size:12px;
+padding:6px 14px;
+background:rgba(255,255,255,.08);
+border-radius:30px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+/* ABOUT */
+.about{
+margin-top:180px;
+max-width:760px;
+font-size:22px;
+color:#bbb;
+line-height:1.6;
+}
+
+/* FOOTER */
+footer{
+margin-top:180px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:#666;
+font-size:15px;
+}
+footer a{
+color:white;
+text-decoration:none;
+margin-right:18px;
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.94);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+.modal video{
+max-width:1200px;
+width:92%;
+border-radius:24px;
+box-shadow:0 0 100px rgba(0,0,0,.8);
+}
+.modal-close{
+position:fixed;
+top:30px;
+right:40px;
+font-size:32px;
+cursor:pointer;
+}
+
+/* FILM GRAIN */
+body::after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:url("https://grainy-gradients.vercel.app/noise.svg");
+opacity:.04;
+mix-blend-mode:overlay;
+z-index:9999;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+body{padding:24px;}
+.hero h1{font-size:56px;}
+.projects-scroll{gap:18px;}
+.project-card{min-width:280px;height:420px;}
+.project-card.large{min-width:280px;height:420px;}
 }
 </style>
 </head>
+
 <body>
 
-<!-- WORKS -->
+<!-- HERO -->
+<section class="hero">
+<h1>Timur <span>Nizamov</span></h1>
+<p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
+<a class="cta" href="#contact">Contact me</a>
+</section>
+
+<!-- PROJECTS -->
+<div class="section-title">Selected Works</div>
+
 <div class="projects-scroll">
 
 <!-- BIG HERO PROJECT -->
 <div class="project-card large" onclick="openModal('images/complete.mp4')">
-<video muted loop playsinline id="heroVideo"></video>
+<video muted loop playsinline poster="images/complete.jpg"></video>
 <div class="project-overlay">
 <div class="project-title">Drollstyle Characters</div>
 <div class="project-desc">Stylized character animation for branding</div>
@@ -117,7 +228,7 @@ max-width:768px{
 
 <!-- NOKIA -->
 <div class="project-card">
-<img src="images/phone 9110.png" alt="Nokia 9110 Concept">
+<img src="images/phone_9110.png">
 <div class="project-overlay">
 <div class="project-title">Nokia 9110 Concept</div>
 <div class="project-desc">Retro CGI product visual</div>
@@ -128,9 +239,9 @@ max-width:768px{
 </div>
 </div>
 
-<!-- EAR IMAGE -->
+<!-- EAR IMAGE вместо видео -->
 <div class="project-card">
-<img src="images/ear.png" alt="Ear Illustration">
+<img src="images/ear.png">
 <div class="project-overlay">
 <div class="project-title">Ear Illustration</div>
 <div class="project-desc">Experimental minimal 3D illustration</div>
@@ -168,51 +279,29 @@ I help brands stand out through animation, CGI and visual systems.
 </div>
 
 <script>
-// НАЧАЛО: Генерация постера автоматически
-const heroVideo = document.getElementById('heroVideo');
-heroVideo.src = 'images/complete.mp4';
-heroVideo.addEventListener('loadeddata',()=>{
-  // создаем canvas и берем первый кадр
-  const canvas = document.createElement('canvas');
-  canvas.width = heroVideo
-
-
-oWidth;
-  canvas.height = heroVideo.videoHeight;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(heroVideo,0,0,canvas.width,canvas.height);
-  heroVideo.setAttribute('poster', canvas.toDataURL());
+// autoplay preview
+document.querySelectorAll('.project-card video').forEach(v=>{
+v.parentElement.addEventListener('mouseenter',()=>v.play());
+v.parentElement.addEventListener('mouseleave',()=>{
+v.pause();v.currentTime=0;
 });
-// hover play for preview
-heroVideo.parentElement.addEventListener('mouseenter',()=>heroVideo.play());
-heroVideo.parentElement.addEventListener('mouseleave',()=>{
-  heroVideo.pause(); heroVideo.currentTime=0;
 });
-// КОНЕЦ: Генерация постера
 
-// modal open/close
+// modal
 function openModal(src){
-  const m=document.getElementById('modal');
-  const v=document.getElementById('modalVideo');
-  v.src=src;
-  m.style.display='flex';
-  v.play();
+const m=document.getElementById('modal');
+const v=document.getElementById('modalVideo');
+v.src=src;
+m.style.display='flex';
+v.play();
 }
 function closeModal(){
-  const m=document.getElementById('modal');
-  const v=document.getElementById('modalVideo');
-  v.pause(); v.src="";
-  m.style.display='none';
+const m=document.getElementById('modal');
+const v=document.getElementById('modalVideo');
+v.pause();v.src="";
+m.style.display='none';
 }
-
-// hover play for other videos if добавятся
-document.querySelectorAll('.project-card video:not(#heroVideo)').forEach(v=>{
-  v.parentElement.addEventListener('mouseenter',()=>v.play());
-  v.parentElement.addEventListener('mouseleave',()=>{
-    v.pause(); v.currentTime=0;
-  });
-});
 </script>
 
 </body>
-</html>.vide
+</html>
