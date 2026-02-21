@@ -9,6 +9,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+html{scroll-behavior:smooth;}
 body{
 background:#050505;
 color:white;
@@ -33,13 +34,15 @@ margin-top:24px;
 .hero .cta{
 margin-top:36px;
 display:inline-block;
-padding:16px 40px;
+padding:16px 44px;
 background:#ff2f92;
 border-radius:60px;
 color:white;
 text-decoration:none;
 font-weight:600;
+transition:.3s;
 }
+.hero .cta:hover{transform:scale(1.05);}
 
 /* SECTION */
 .section-title{
@@ -48,13 +51,13 @@ font-size:34px;
 font-weight:700;
 }
 
-/* ULTRA PRO HORIZONTAL GRID */
+/* ULTRA PRO GRID V2 */
 .projects-scroll{
 margin-top:40px;
 display:flex;
-gap:28px;
+gap:32px;
 overflow-x:auto;
-padding-bottom:20px;
+padding-bottom:40px;
 scroll-snap-type:x mandatory;
 }
 .projects-scroll::-webkit-scrollbar{height:8px;}
@@ -62,32 +65,38 @@ scroll-snap-type:x mandatory;
 background:#222;border-radius:10px;
 }
 
+/* CARDS */
 .project-card{
 position:relative;
 min-width:420px;
 height:560px;
-border-radius:26px;
+border-radius:30px;
 overflow:hidden;
 background:#111;
 cursor:pointer;
 scroll-snap-align:start;
-transition:.4s;
+transition:.5s cubic-bezier(.2,.8,.2,1);
+box-shadow:0 40px 80px rgba(0,0,0,.6);
 }
 
-.project-card.large{min-width:720px;height:560px;}
+.project-card.large{min-width:760px;height:560px;}
 
 .project-card img,
 .project-card video{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:1s ease;
-filter:brightness(.8);
+transition:1.2s ease;
+filter:brightness(.85);
+}
+
+.project-card:hover{
+transform:translateY(-12px) scale(1.02);
 }
 
 .project-card:hover img,
 .project-card:hover video{
-transform:scale(1.15);
+transform:scale(1.18);
 filter:brightness(1);
 }
 
@@ -95,19 +104,19 @@ filter:brightness(1);
 .project-overlay{
 position:absolute;
 inset:0;
-background:linear-gradient(180deg,transparent,rgba(0,0,0,.8));
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));
 display:flex;
 flex-direction:column;
 justify-content:flex-end;
-padding:28px;
-backdrop-filter:blur(6px);
+padding:32px;
+backdrop-filter:blur(10px);
 opacity:0;
-transition:.4s;
+transition:.5s;
 }
 
 .project-card:hover .project-overlay{opacity:1;}
 
-.project-title{font-size:24px;font-weight:700;}
+.project-title{font-size:26px;font-weight:700;}
 .project-desc{font-size:14px;color:#aaa;margin-top:6px;}
 .project-tags{display:flex;gap:10px;margin-top:14px;}
 .tag{
@@ -115,37 +124,38 @@ font-size:12px;
 padding:6px 14px;
 background:rgba(255,255,255,.08);
 border-radius:30px;
+border:1px solid rgba(255,255,255,.08);
 }
 
 /* ABOUT */
 .about{
-margin-top:160px;
+margin-top:180px;
 max-width:760px;
 font-size:22px;
 color:#bbb;
-line-height:1.5;
+line-height:1.6;
 }
 
 /* FOOTER */
 footer{
-margin-top:160px;
+margin-top:180px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 color:#666;
+font-size:15px;
 }
 footer a{
 color:white;
 text-decoration:none;
 margin-right:18px;
-font-size:16px;
 }
 
 /* MODAL */
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.92);
+background:rgba(0,0,0,.94);
 display:none;
 align-items:center;
 justify-content:center;
@@ -154,14 +164,27 @@ z-index:999;
 .modal video{
 max-width:1200px;
 width:92%;
-border-radius:22px;
+border-radius:24px;
+box-shadow:0 0 100px rgba(0,0,0,.8);
 }
 .modal-close{
 position:fixed;
 top:30px;
 right:40px;
-font-size:30px;
+font-size:32px;
 cursor:pointer;
+}
+
+/* FILM GRAIN */
+body::after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:url("https://grainy-gradients.vercel.app/noise.svg");
+opacity:.04;
+mix-blend-mode:overlay;
+z-index:9999;
 }
 
 /* MOBILE */
@@ -180,7 +203,7 @@ body{padding:24px;}
 <!-- HERO -->
 <section class="hero">
 <h1>Timur <span>Nizamov</span></h1>
-<p>Motion designer & 3D illustrator creating bold cinematic visuals, playful characters and premium brand animations.</p>
+<p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
 <a class="cta" href="#contact">Contact me</a>
 </section>
 
@@ -191,7 +214,7 @@ body{padding:24px;}
 
 <!-- BIG HERO PROJECT -->
 <div class="project-card large" onclick="openModal('images/complete.mp4')">
-<video muted loop playsinline poster="images/complete.jpg"></video>
+<video muted loop playsinline poster=complete.mp4"></video>
 <div class="project-overlay">
 <div class="project-title">Drollstyle Characters</div>
 <div class="project-desc">Stylized character animation for branding</div>
@@ -203,28 +226,28 @@ body{padding:24px;}
 </div>
 </div>
 
-<!-- NOKIA IMAGE -->
+<!-- NOKIA -->
 <div class="project-card">
-<img src="images/phone 9110.png" loading="lazy">
+<img src="images/phone 9110.png">
 <div class="project-overlay">
 <div class="project-title">Nokia 9110 Concept</div>
-<div class="project-desc">Retro CGI product concept</div>
+<div class="project-desc">Retro CGI product visual</div>
 <div class="project-tags">
-<div class="tag">3D</div>
+<div class="tag">CGI</div>
 <div class="tag">Product</div>
 </div>
 </div>
 </div>
 
-<!-- HEADPHONES -->
-<div class="project-card" onclick="openModal('images/ear.png')">
-<video muted loop playsinline poster="images/headphones.jpg"></video>
+<!-- EAR IMAGE вместо видео -->
+<div class="project-card">
+<img src="images/ear.png">
 <div class="project-overlay">
-<div class="project-title">Headphones Illustration</div>
-<div class="project-desc">Minimal product motion visual</div>
+<div class="project-title">Ear Illustration</div>
+<div class="project-desc">Experimental minimal 3D illustration</div>
 <div class="project-tags">
-<div class="tag">3D and 2D</div>
-<div class="tag">Advertising</div>
+<div class="tag">3D</div>
+<div class="tag">Concept</div>
 </div>
 </div>
 </div>
@@ -234,8 +257,8 @@ body{padding:24px;}
 <!-- ABOUT -->
 <section class="about">
 <p>
-I’m a motion designer and 3D illustrator focused on cinematic storytelling, premium visual identity, and futuristic product visuals.  
-I help brands stand out through animation, CGI and digital experiences.
+I’m a motion designer and 3D illustrator focused on cinematic storytelling, futuristic product visuals and premium digital identity.  
+I help brands stand out through animation, CGI and visual systems.
 </p>
 </section>
 
