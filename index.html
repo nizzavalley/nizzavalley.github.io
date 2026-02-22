@@ -51,7 +51,7 @@ font-size:34px;
 font-weight:700;
 }
 
-/* ULTRA PRO GRID V2 */
+/* PROJECTS */
 .projects-scroll{
 margin-top:40px;
 display:flex;
@@ -65,7 +65,6 @@ scroll-snap-type:x mandatory;
 background:#222;border-radius:10px;
 }
 
-/* CARDS */
 .project-card{
 position:relative;
 min-width:420px;
@@ -100,7 +99,6 @@ transform:scale(1.18);
 filter:brightness(1);
 }
 
-/* GLASS OVERLAY */
 .project-overlay{
 position:absolute;
 inset:0;
@@ -136,43 +134,119 @@ color:#bbb;
 line-height:1.6;
 }
 
-/* FOOTER */
-footer{
-margin-top:180px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-color:#666;
-font-size:15px;
-}
-footer a{
-color:white;
-text-decoration:none;
-margin-right:18px;
+/* WOW CONTACT SECTION */
+.contact-section{
+margin-top:220px;
+padding:160px 40px;
+border-radius:40px;
+position:relative;
+text-align:center;
+overflow:hidden;
+background:#0a0a0a;
 }
 
-/* MODAL */
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.94);
-display:none;
-align-items:center;
+/* glowing background */
+.contact-section::before{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(circle,rgba(255,47,146,.25),transparent 60%);
+top:-200px;
+left:50%;
+transform:translateX(-50%);
+filter:blur(120px);
+z-index:0;
+}
+
+.contact-title{
+font-size:56px;
+font-weight:800;
+margin-bottom:100px;
+letter-spacing:-1px;
+position:relative;
+z-index:2;
+}
+
+.contact-grid{
+display:flex;
 justify-content:center;
-z-index:999;
+gap:50px;
+flex-wrap:wrap;
+position:relative;
+z-index:2;
 }
-.modal video{
-max-width:1200px;
-width:92%;
-border-radius:24px;
-box-shadow:0 0 100px rgba(0,0,0,.8);
+
+.contact-card{
+position:relative;
+padding:30px 80px;
+font-size:20px;
+font-weight:600;
+border-radius:18px;
+color:white;
+text-decoration:none;
+background:#111;
+border:1px solid rgba(255,255,255,.1);
+overflow:hidden;
+transition:.5s cubic-bezier(.2,.8,.2,1);
 }
-.modal-close{
-position:fixed;
-top:30px;
-right:40px;
-font-size:32px;
-cursor:pointer;
+
+/* animated gradient border */
+.contact-card::before{
+content:"";
+position:absolute;
+inset:-2px;
+border-radius:20px;
+background:linear-gradient(
+90deg,
+#ff2f92,
+#6c2fff,
+#00f0ff,
+#ff2f92
+);
+background-size:300% 300%;
+animation:gradientMove 6s linear infinite;
+z-index:-1;
+opacity:0;
+transition:.5s;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+100%{background-position:300% 50%;}
+}
+
+/* light sweep */
+.contact-card::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.2),
+transparent
+);
+transform:skewX(-25deg);
+transition:.7s;
+}
+
+.contact-card:hover::before{opacity:1;}
+.contact-card:hover::after{left:150%;}
+.contact-card:hover{
+transform:translateY(-12px) scale(1.08);
+box-shadow:0 40px 100px rgba(0,0,0,.8);
+}
+
+/* FOOTER */
+footer{
+margin-top:160px;
+text-align:center;
+color:#666;
+font-size:14px;
 }
 
 /* FILM GRAIN */
@@ -194,25 +268,24 @@ body{padding:24px;}
 .projects-scroll{gap:18px;}
 .project-card{min-width:280px;height:420px;}
 .project-card.large{min-width:280px;height:420px;}
+.contact-title{font-size:36px;}
+.contact-card{padding:24px 40px;font-size:16px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
 <h1>Timur <span>Nizamov</span></h1>
 <p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
 <a class="cta" href="#contact">Contact me</a>
 </section>
 
-<!-- PROJECTS -->
 <div class="section-title">Selected Works</div>
 
 <div class="projects-scroll">
 
-<!-- BIG HERO PROJECT -->
 <div class="project-card large" onclick="openModal('images/complete.mp4')">
 <video muted loop playsinline poster="images/poster complete.png"></video>
 <div class="project-overlay">
@@ -226,7 +299,6 @@ body{padding:24px;}
 </div>
 </div>
 
-<!-- NOKIA -->
 <div class="project-card">
 <img src="images/phone 9110.png">
 <div class="project-overlay">
@@ -239,7 +311,6 @@ body{padding:24px;}
 </div>
 </div>
 
-<!-- EAR IMAGE вместо видео -->
 <div class="project-card">
 <img src="images/ear.png">
 <div class="project-overlay">
@@ -254,7 +325,6 @@ body{padding:24px;}
 
 </div>
 
-<!-- ABOUT -->
 <section class="about">
 <p>
 I’m a motion designer and 3D illustrator focused on cinematic storytelling, futuristic product visuals and premium digital identity.  
@@ -262,106 +332,36 @@ I help brands stand out through animation, CGI and visual systems.
 </p>
 </section>
 
-<!-- FOOTER -->
-<section class="contact-section">
-  <h2 class="contact-title">Let’s create something powerful</h2>
-
-  <div class="contact-grid">
-    <a href="mailto:your@email.com" class="contact-card">
-      <span>Email</span>
-    </a>
-
-    <a href="https://t.me/yourprofile" target="_blank" class="contact-card">
-      <span>Telegram</span>
-    </a>
-
-    <a href="https://dribbble.com/yourprofile" target="_blank" class="contact-card">
-      <span>Dribbble</span>
-    </a>
-  </div>
-</section>
+<section class="contact-section" id="contact">
+<h2 class="contact-title">Let’s create something powerful</h2>
+<div class="contact-grid">
+<a href="mailto:badkidsfromoregon@yandex.ru" class="contact-card">Email</a>
+<a href="https://t.me/badkids_FO" target="_blank" class="contact-card">Telegram</a>
+<a href="https://dribbble.com/Timur_Nizamov_99" target="_blank" class="contact-card">Dribbble</a>
 </div>
+</section>
+
+<footer>
 <div>© 2026 Timur Nizamov</div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-close" onclick="closeModal()">✕</div>
-<video id="modalVideo" controls></video>
-</div>
-
 <script>
-// autoplay preview
 document.querySelectorAll('.project-card video').forEach(v=>{
 v.parentElement.addEventListener('mouseenter',()=>v.play());
 v.parentElement.addEventListener('mouseleave',()=>{
 v.pause();v.currentTime=0;
 });
 });
-
-// modal
-.contact-section {
-  padding: 140px 20px;
-  background: #0a0a0a;
-  text-align: center;
-  position: relative;
+function openModal(src){
+const m=document.getElementById('modal');
+const v=document.getElementById('modalVideo');
+v.src=src;
+m.style.display='flex';
+v.play();
 }
-
-.contact-title {
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 800;
-  margin-bottom: 80px;
-  letter-spacing: -1px;
-}
-
-.contact-grid {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.contact-card {
-  position: relative;
-  padding: 28px 60px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 14px;
-  color: white;
-  text-decoration: none;
-  background: #111;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
-
-/* неоновый градиент */
-.contact-card::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 14px;
-  background: linear-gradient(
-    90deg,
-    #ff00cc,
-    #3333ff,
-    #00f0ff,
-    #ff00cc
-  );
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* glow */
-.contact-card:hover::before {
-  opacity: 1;
-}
-
-.contact-card:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
+function closeModal(){
+const m=document.getElementById('modal');
+const v=document.getElementById('modalVideo');
 v.pause();v.src="";
 m.style.display='none';
 }
