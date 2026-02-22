@@ -134,9 +134,7 @@ color:#bbb;
 line-height:1.6;
 }
 
-/* WOW CONTACT SECTION */
-/* CONTACT SECTION — refined premium */
-
+/* CONTACT SECTION */
 .contact-section{
 margin-top:200px;
 padding:140px 40px;
@@ -146,6 +144,42 @@ text-align:center;
 background:#070707;
 }
 
+/* Magnetic CTA sticker */
+.contact-sticker{
+margin-bottom:20px;
+display:flex;
+justify-content:center;
+position:relative;
+z-index:2;
+}
+
+.contact-sticker span{
+display:inline-block;
+padding:6px 18px;
+font-size:18px;
+font-weight:600;
+color:white;
+border:1px solid #ff2f92;
+border-radius:12px;
+background:rgba(255,255,255,0.05);
+animation:magnetBounce 2.2s ease-in-out infinite;
+opacity:.9;
+transition:all 0.3s ease;
+}
+
+.contact-sticker span:hover{
+transform:scale(1.1);
+opacity:1;
+}
+
+@keyframes magnetBounce{
+0%,100% { transform: translateY(0px);}
+25% { transform: translateY(-6px);}
+50% { transform: translateY(-3px);}
+75% { transform: translateY(-6px);}
+}
+
+/* contact title */
 .contact-title{
 font-size:38px;
 font-weight:700;
@@ -154,6 +188,7 @@ letter-spacing:-0.5px;
 color:#ccc;
 }
 
+/* contact cards */
 .contact-grid{
 display:flex;
 justify-content:center;
@@ -222,6 +257,7 @@ transition:.8s;
 transform:translateY(-8px) scale(1.04);
 box-shadow:0 30px 80px rgba(0,0,0,.7);
 }
+
 /* FOOTER */
 footer{
 margin-top:160px;
@@ -249,8 +285,9 @@ body{padding:24px;}
 .projects-scroll{gap:18px;}
 .project-card{min-width:280px;height:420px;}
 .project-card.large{min-width:280px;height:420px;}
-.contact-title{font-size:36px;}
+.contact-title{font-size:28px;}
 .contact-card{padding:24px 40px;font-size:16px;}
+.contact-sticker span{font-size:16px;padding:4px 14px;}
 }
 </style>
 </head>
@@ -314,11 +351,17 @@ I help brands stand out through animation, CGI and visual systems.
 </section>
 
 <section class="contact-section" id="contact">
+
+<div class="contact-sticker">
+  <span>Say hi 👋</span>
+</div>
+
 <h2 class="contact-title">Let’s create something powerful</h2>
+
 <div class="contact-grid">
-<a href="mailto:badkidsfromoregon@yandex.ru" class="contact-card">Email</a>
-<a href="https://t.me/badkids_FO" target="_blank" class="contact-card">Telegram</a>
-<a href="https://dribbble.com/Timur_Nizamov_99" target="_blank" class="contact-card">Dribbble</a>
+  <a href="mailto:badkidsfromoregon@yandex.ru" class="contact-card">Email</a>
+  <a href="https://t.me/badkids_FO" target="_blank" class="contact-card">Telegram</a>
+  <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank" class="contact-card">Dribbble</a>
 </div>
 </section>
 
