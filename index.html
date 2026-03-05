@@ -16,7 +16,7 @@ html{scroll-behavior:smooth;}
   --text:#111;
   --muted:rgba(17,17,17,.62);
   --shadow:0 22px 70px rgba(0,0,0,.12);
-  --r:18px;
+  --r:22px;
 }
 
 body{
@@ -25,14 +25,13 @@ body{
   overflow-x:hidden;
 }
 
-/* Layout container only for text sections, NOT for hero video */
 .container{
   max-width:1320px;
   margin:0 auto;
   padding:64px;
 }
 
-/* Sticky header (studio feel) */
+/* Sticky top bar */
 .topbar{
   position:sticky;
   top:0;
@@ -41,7 +40,6 @@ body{
   backdrop-filter: blur(14px);
   border-bottom:1px solid rgba(17,17,17,.10);
 }
-
 .topbar-inner{
   max-width:1320px;
   margin:0 auto;
@@ -51,20 +49,17 @@ body{
   justify-content:space-between;
   gap:18px;
 }
-
 .brand-mini{
   font-weight:900;
   letter-spacing:-.4px;
   color:rgba(17,17,17,.92);
 }
-
 .nav{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
   align-items:center;
 }
-
 .pill{
   display:inline-flex;
   align-items:center;
@@ -79,18 +74,14 @@ body{
 }
 .pill:hover{transform:translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.10);}
 
-/* HERO TITLE */
-.hero-title{
-  padding-top:34px;
-}
-
+/* Hero title */
+.hero-title{padding-top:34px;}
 .hero-title h1{
   font-size:clamp(54px, 6vw, 96px);
   font-weight:800;
   letter-spacing:-2px;
   line-height:.95;
 }
-
 .hero-title p{
   margin-top:16px;
   font-size:18px;
@@ -99,7 +90,7 @@ body{
   color:var(--muted);
 }
 
-/* HERO VIDEO FULL BLEED */
+/* FULL BLEED HERO VIDEO */
 .hero-video{
   width:100vw;
   position:relative;
@@ -107,7 +98,6 @@ body{
   transform:translateX(-50%);
   margin-top:26px;
 }
-
 .hero-frame{
   position:relative;
   width:100%;
@@ -116,8 +106,6 @@ body{
   overflow:hidden;
   background:#e9e9e9;
 }
-
-/* make iframe “cover” like a cinematic crop */
 .hero-frame iframe{
   position:absolute;
   inset:0;
@@ -125,14 +113,19 @@ body{
   height:100%;
   border:0;
 }
+.hero-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(90% 80% at 50% 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,.18) 100%);
+  pointer-events:none;
+}
 
-/* overlay controls on hero */
 .hero-overlay{
   position:absolute;
   inset:0;
   pointer-events:none;
 }
-
 .hero-overlay .controls{
   position:absolute;
   left:32px;
@@ -142,7 +135,19 @@ body{
   flex-wrap:wrap;
   pointer-events:auto;
 }
-
+.hero-hint{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(17,17,17,.78);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+  font-weight:800;
+  transition:.22s ease;
+}
+.hero-hint:hover{transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,0,0,.22);}
 .hero-badge{
   display:inline-flex;
   align-items:center;
@@ -157,30 +162,7 @@ body{
 }
 .hero-badge:hover{transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,0,0,.14);}
 
-.hero-hint{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:rgba(17,17,17,.78);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.16);
-  font-weight:800;
-  transition:.22s ease;
-}
-.hero-hint:hover{transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,0,0,.22);}
-
-/* subtle vignette on hero */
-.hero-frame::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(90% 80% at 50% 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,.18) 100%);
-  pointer-events:none;
-}
-
-/* SECTION TITLE */
+/* Section title */
 .section-title{
   margin-top:56px;
   font-size:14px;
@@ -189,74 +171,62 @@ body{
   color:rgba(17,17,17,.72);
 }
 
-/* WORKS GRID — no frames, “poster wall” feel */
+/* CHAOTIC GRID */
 .works{
   margin-top:16px;
   display:grid;
   grid-template-columns:repeat(12, 1fr);
-  gap:18px;
+  gap:22px;
   grid-auto-flow:dense;
+  align-items:start;
 }
 
-/* poster cards */
+/* POSTER CARDS — NO FRAMES */
 .work{
+  --offY: 0px;
   position:relative;
   overflow:hidden;
   border-radius:var(--r);
   cursor:pointer;
   outline:none;
-
-  /* NO background, NO border, NO default shadow */
-  background:transparent;
+  background:transparent; /* важно: без белой подложки */
+  transform: translateY(var(--offY));
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+}
+.work:hover{
+  transform: translateY(calc(var(--offY) - 8px));
+  box-shadow: var(--shadow);
 }
 
-/* sizes (chaotic mix) */
-.work.s12{grid-column:span 12; min-height:560px;}
-.work.s8{ grid-column:span 8;  min-height:460px;}
-.work.s7{ grid-column:span 7;  min-height:440px;}
-.work.s6{ grid-column:span 6;  min-height:420px;}
-.work.s5{ grid-column:span 5;  min-height:420px;}
-.work.s4{ grid-column:span 4;  min-height:400px;}
+/* Sizes (bigger overall) */
+.work.s12{grid-column:span 12; min-height:620px;}
+.work.s8{ grid-column:span 8;  min-height:520px;}
+.work.s7{ grid-column:span 7;  min-height:500px;}
+.work.s6{ grid-column:span 6;  min-height:480px;}
+.work.s5{ grid-column:span 5;  min-height:460px;}
+.work.s4{ grid-column:span 4;  min-height:440px;}
 
-/* media */
+/* Media */
 .work img, .work video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover;  /* без рамок */
+  object-position:center;
   transform:scale(1.001);
   transition: transform 1.0s ease, filter 1.0s ease;
   will-change: transform;
 }
 
-/* for “do not crop” items: use contain + blurred backdrop */
-.work.fit::before{
-  content:"";
-  position:absolute;
-  inset:-22px;
-  background-image: var(--bgimg);
-  background-size:cover;
-  background-position:center;
-  filter:blur(22px);
-  opacity:.28;
-  transform:scale(1.15);
-}
-
-.work.fit img,
-.work.fit video{
-  object-fit:contain;
-  padding:14px; /* золотая середина: не мелко и не режет */
-}
-
-/* hover effect like studio */
+/* hover zoom */
 .work:hover img,
 .work:hover video{
-  transform:scale(1.04);
+  transform:scale(1.045);
   filter:contrast(1.02);
 }
 
-/* overlay appear only on hover */
+/* Hover overlay */
 .work::after{
   content:"";
   position:absolute;
@@ -314,15 +284,15 @@ body{
   color:#fff;
 }
 
-/* reveal on scroll */
+/* reveal */
 .reveal{
   opacity:0;
-  transform: translateY(16px);
+  transform: translateY(calc(var(--offY) + 18px));
   transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
 }
 .reveal.in{
   opacity:1;
-  transform: translateY(0);
+  transform: translateY(var(--offY));
 }
 
 /* footer */
@@ -346,6 +316,7 @@ body{
   color:rgba(17,17,17,.86);
   font-weight:900;
   border-bottom:1px solid rgba(17,17,17,.22);
+  text-decoration:none;
 }
 .footer .links a:hover{border-bottom-color: rgba(17,17,17,.55);}
 
@@ -378,7 +349,7 @@ body{
   background: rgba(255,255,255,.04);
 }
 
-/* Vimeo modal */
+/* Vimeo sound modal */
 .vimeo-wrap{
   width:min(1280px, 92vw);
   aspect-ratio: 16 / 9;
@@ -386,11 +357,7 @@ body{
   overflow:hidden;
   box-shadow: 0 0 120px rgba(0,0,0,.6);
 }
-.vimeo-wrap iframe{
-  width:100%;
-  height:100%;
-  border:0;
-}
+.vimeo-wrap iframe{width:100%;height:100%;border:0;}
 
 /* mobile */
 @media(max-width:980px){
@@ -400,18 +367,17 @@ body{
   .hero-overlay .controls{left:16px; bottom:16px;}
 
   .works{grid-template-columns:1fr;}
-  .work{grid-column:span 12; min-height:320px;}
-  /* no hover on mobile — show overlay always */
+  .work{grid-column:span 12; min-height:340px; --offY:0px;}
+
+  /* на мобиле нет hover — показываем инфо всегда */
   .work::after{opacity:1;}
   .work-info{opacity:1; transform:none;}
-  .work.fit img,.work.fit video{padding:12px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Sticky top bar -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand-mini">Timur Nizamov</div>
@@ -423,19 +389,14 @@ body{
 </div>
 
 <div class="container">
-
-  <!-- Title -->
   <section class="hero-title">
     <h1>Timur Nizamov</h1>
     <p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
   </section>
-
 </div>
 
-<!-- Full-bleed Vimeo hero -->
 <section class="hero-video" aria-label="Featured work">
   <div class="hero-frame">
-    <!-- Autoplay works reliably only muted -->
     <iframe
       id="vimeoHero"
       src="https://player.vimeo.com/video/1170682380?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0"
@@ -454,18 +415,15 @@ body{
 </section>
 
 <div class="container">
-
   <div class="section-title" id="works">Selected Works</div>
 
-  <!-- Works grid -->
   <section class="works">
 
-    <!-- Drollstyle (fit so it doesn't crop; hover preview) -->
-    <article class="work s7 fit reveal"
-      style="--bgimg:url('images/poster complete.png')"
+    <!-- Drollstyle (bigger + chaotic offset) -->
+    <article class="work s7 reveal"
+      style="--offY: 8px;"
       role="button" tabindex="0"
       onclick="openLocalVideo('images/complete.mp4')">
-
       <video muted loop playsinline poster="images/poster complete.png" data-src="images/complete.mp4"></video>
 
       <div class="work-info">
@@ -481,12 +439,11 @@ body{
       </div>
     </article>
 
-    <!-- Nokia (fit, opens image) -->
-    <article class="work s5 fit reveal"
-      style="--bgimg:url('images/phone 9110.png')"
+    <!-- Nokia (bigger + offset) -->
+    <article class="work s5 reveal"
+      style="--offY: 38px;"
       role="button" tabindex="0"
       onclick="openImage('images/phone 9110.png')">
-
       <img src="images/phone 9110.png" alt="Nokia 9110 Concept">
 
       <div class="work-info">
@@ -501,12 +458,11 @@ body{
       </div>
     </article>
 
-    <!-- Ear (fit, opens image) -->
-    <article class="work s4 fit reveal"
-      style="--bgimg:url('images/ear.png')"
+    <!-- Ear (bigger + offset, more “random”) -->
+    <article class="work s4 reveal"
+      style="--offY: -14px;"
       role="button" tabindex="0"
       onclick="openImage('images/ear.png')">
-
       <img src="images/ear.png" alt="Ear Illustration">
 
       <div class="work-info">
@@ -521,8 +477,7 @@ body{
       </div>
     </article>
 
-    <!-- Если захочешь добавить ещё — просто копируй карточку и меняй size-класс (s4/s5/s6/s7/s8/s12) -->
-
+    <!-- Если добавишь ещё работы — просто копируй блок и меняй s4/s5/s6/s7/s8 + --offY -->
   </section>
 
   <footer class="footer" id="contact">
@@ -533,7 +488,6 @@ body{
     </div>
     <div>© 2026 Timur Nizamov</div>
   </footer>
-
 </div>
 
 <!-- IMAGE MODAL -->
@@ -546,8 +500,7 @@ body{
 <div class="modal" id="vimeoModal">
   <div class="modal-close" onclick="closeVimeoSound()">✕</div>
   <div class="vimeo-wrap">
-    <iframe id="vimeoSoundFrame"
-      src=""
+    <iframe id="vimeoSoundFrame" src=""
       allow="autoplay; fullscreen; picture-in-picture"
       allowfullscreen
       title="Vimeo sound">
@@ -578,7 +531,6 @@ document.querySelectorAll('.work video').forEach(v => {
 });
 
 function openLocalVideo(src){
-  // simplest: open the mp4 in a new tab
   window.open(src, "_blank");
 }
 
@@ -596,10 +548,7 @@ function closeImage(){
   m.style.display = 'none';
 }
 
-/* Vimeo sound modal:
-   Autoplay WITH SOUND is often blocked unless user interacts.
-   Clicking "Sound on" is user interaction => OK.
-*/
+/* Vimeo sound modal */
 function openVimeoSound(){
   const m = document.getElementById('vimeoModal');
   const f = document.getElementById('vimeoSoundFrame');
@@ -635,5 +584,6 @@ document.querySelectorAll('[role="button"]').forEach(el=>{
   });
 });
 </script>
+
 </body>
 </html>
