@@ -12,98 +12,113 @@
 html{scroll-behavior:smooth;}
 
 :root{
-  --bg:#f3f3f3;
+  --bg:#f4f4f4;
   --text:#111;
   --muted:rgba(17,17,17,.62);
-  --card:#ffffff;
-  --stroke:rgba(17,17,17,.10);
-  --shadow:0 18px 60px rgba(0,0,0,.10);
-  --r:22px;
+  --shadow:0 22px 70px rgba(0,0,0,.12);
+  --r:18px;
 }
 
 body{
   background:var(--bg);
   color:var(--text);
-  padding:64px;
   overflow-x:hidden;
 }
 
-a{color:inherit;text-decoration:none;}
-.container{max-width:1320px;margin:0 auto;}
+/* Layout container only for text sections, NOT for hero video */
+.container{
+  max-width:1320px;
+  margin:0 auto;
+  padding:64px;
+}
 
-/* Header / Title */
-.header{
+/* Sticky header (studio feel) */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(244,244,244,.82);
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid rgba(17,17,17,.10);
+}
+
+.topbar-inner{
+  max-width:1320px;
+  margin:0 auto;
+  padding:14px 64px;
   display:flex;
-  align-items:flex-start;
+  align-items:center;
   justify-content:space-between;
-  gap:22px;
-  padding-top:6px;
+  gap:18px;
 }
 
-.brand h1{
-  font-size: clamp(54px, 6vw, 96px);
-  font-weight: 800;
-  letter-spacing: -2px;
-  line-height: .95;
-}
-.brand p{
-  margin-top:16px;
-  max-width:780px;
-  font-size:18px;
-  line-height:1.6;
-  color:var(--muted);
+.brand-mini{
+  font-weight:900;
+  letter-spacing:-.4px;
+  color:rgba(17,17,17,.92);
 }
 
-.header .actions{
+.nav{
   display:flex;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
   align-items:center;
-  justify-content:flex-end;
 }
+
 .pill{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  padding:12px 16px;
+  padding:10px 14px;
   border-radius:999px;
-  border:1px solid var(--stroke);
-  background:rgba(255,255,255,.75);
-  backdrop-filter: blur(10px);
-  transition:.25s ease;
-  font-weight:700;
-  color: rgba(17,17,17,.82);
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(17,17,17,.10);
+  color:rgba(17,17,17,.86);
+  font-weight:800;
+  transition:.22s ease;
 }
-.pill:hover{transform:translateY(-2px); box-shadow: var(--shadow);}
+.pill:hover{transform:translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.10);}
 
-.hr{
-  margin-top:26px;
-  height:1px;
-  background:var(--stroke);
-  border:0;
+/* HERO TITLE */
+.hero-title{
+  padding-top:34px;
 }
 
-/* HERO VIDEO (full width) */
+.hero-title h1{
+  font-size:clamp(54px, 6vw, 96px);
+  font-weight:800;
+  letter-spacing:-2px;
+  line-height:.95;
+}
+
+.hero-title p{
+  margin-top:16px;
+  font-size:18px;
+  line-height:1.6;
+  max-width:780px;
+  color:var(--muted);
+}
+
+/* HERO VIDEO FULL BLEED */
 .hero-video{
+  width:100vw;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
   margin-top:26px;
-  border-radius: var(--r);
-  overflow:hidden;
-  border:1px solid var(--stroke);
-  background: #fff;
-  box-shadow: 0 1px 0 rgba(0,0,0,.03);
 }
 
-/* Full width, “cinema” height */
-.hero-video .frame{
+.hero-frame{
   position:relative;
   width:100%;
-  height: calc(100vh - 230px);
-  min-height: 520px;
-  max-height: 860px;
+  height:min(86vh, 860px);
+  min-height:520px;
+  overflow:hidden;
   background:#e9e9e9;
 }
 
-.hero-video iframe{
+/* make iframe “cover” like a cinematic crop */
+.hero-frame iframe{
   position:absolute;
   inset:0;
   width:100%;
@@ -111,165 +126,210 @@ a{color:inherit;text-decoration:none;}
   border:0;
 }
 
-.hero-caption{
-  padding:14px 18px;
+/* overlay controls on hero */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.hero-overlay .controls{
+  position:absolute;
+  left:32px;
+  bottom:28px;
   display:flex;
-  justify-content:space-between;
-  gap:14px;
+  gap:10px;
   flex-wrap:wrap;
-  background: rgba(255,255,255,.92);
-  border-top:1px solid var(--stroke);
+  pointer-events:auto;
 }
 
-.hero-caption .left{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-.hero-caption .title{
-  font-size:16px;
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(17,17,17,.10);
   font-weight:900;
-  letter-spacing:-.2px;
+  color:rgba(17,17,17,.88);
+  transition:.22s ease;
 }
-.hero-caption .desc{
-  font-size:13px;
-  color: rgba(17,17,17,.65);
+.hero-badge:hover{transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,0,0,.14);}
+
+.hero-hint{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(17,17,17,.78);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+  font-weight:800;
+  transition:.22s ease;
+}
+.hero-hint:hover{transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,0,0,.22);}
+
+/* subtle vignette on hero */
+.hero-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(90% 80% at 50% 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,.18) 100%);
+  pointer-events:none;
 }
 
-/* Works section */
+/* SECTION TITLE */
 .section-title{
-  margin-top:58px;
+  margin-top:56px;
   font-size:14px;
   font-weight:900;
   letter-spacing:.2px;
   color:rgba(17,17,17,.72);
 }
 
-/* “Chaotic” grid */
+/* WORKS GRID — no frames, “poster wall” feel */
 .works{
   margin-top:16px;
   display:grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns:repeat(12, 1fr);
   gap:18px;
-  grid-auto-flow: dense;
+  grid-auto-flow:dense;
 }
 
-/* Card */
+/* poster cards */
 .work{
   position:relative;
-  border-radius: var(--r);
-  background: var(--card);
-  border:1px solid var(--stroke);
   overflow:hidden;
-  box-shadow: 0 1px 0 rgba(0,0,0,.03);
-  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+  border-radius:var(--r);
   cursor:pointer;
   outline:none;
-  min-height: 320px;
+
+  /* NO background, NO border, NO default shadow */
+  background:transparent;
 }
 
-.work:hover{
-  transform: translateY(-6px);
-  box-shadow: var(--shadow);
-}
+/* sizes (chaotic mix) */
+.work.s12{grid-column:span 12; min-height:560px;}
+.work.s8{ grid-column:span 8;  min-height:460px;}
+.work.s7{ grid-column:span 7;  min-height:440px;}
+.work.s6{ grid-column:span 6;  min-height:420px;}
+.work.s5{ grid-column:span 5;  min-height:420px;}
+.work.s4{ grid-column:span 4;  min-height:400px;}
 
-/* Sizes (mix & match for “chaos”) */
-.work.s12{ grid-column: span 12; min-height: 520px; }
-.work.s8{  grid-column: span 8;  min-height: 440px; }
-.work.s7{  grid-column: span 7;  min-height: 420px; }
-.work.s6{  grid-column: span 6;  min-height: 380px; }
-.work.s5{  grid-column: span 5;  min-height: 380px; }
-.work.s4{  grid-column: span 4;  min-height: 380px; }
-
-/* backdrop fill (helps “contain” not look empty) */
-.work::before{
-  content:"";
-  position:absolute;
-  inset:-26px;
-  background-image: var(--bgimg);
-  background-size: cover;
-  background-position: center;
-  filter: blur(20px);
-  opacity:.28;
-  transform: scale(1.12);
-  z-index:0;
-}
-
-/* Media */
+/* media */
 .work img, .work video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  z-index:1;
+  object-fit:cover;
+  transform:scale(1.001);
   transition: transform 1.0s ease, filter 1.0s ease;
+  will-change: transform;
 }
 
-/* cover = fills card, may crop */
-.work.cover img, .work.cover video{ object-fit: cover; }
-
-/* fit = no crop, but still looks “full” because of blurred backdrop */
-.work.fit img, .work.fit video{
-  object-fit: contain;
-  padding:16px; /* золотая середина: объект крупный, без сильного уменьшения */
+/* for “do not crop” items: use contain + blurred backdrop */
+.work.fit::before{
+  content:"";
+  position:absolute;
+  inset:-22px;
+  background-image: var(--bgimg);
+  background-size:cover;
+  background-position:center;
+  filter:blur(22px);
+  opacity:.28;
+  transform:scale(1.15);
 }
 
-/* hover zoom */
-.work:hover img, .work:hover video{ transform: scale(1.04); }
+.work.fit img,
+.work.fit video{
+  object-fit:contain;
+  padding:14px; /* золотая середина: не мелко и не режет */
+}
 
-/* Hover overlay info (ONLY on hover) */
+/* hover effect like studio */
+.work:hover img,
+.work:hover video{
+  transform:scale(1.04);
+  filter:contrast(1.02);
+}
+
+/* overlay appear only on hover */
+.work::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(0,0,0,.62) 100%);
+  opacity:0;
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;
+}
+
 .work-info{
   position:absolute;
-  left:14px;
-  right:14px;
-  bottom:12px;
+  left:18px;
+  right:18px;
+  bottom:16px;
   z-index:2;
-
+  color:#fff;
   opacity:0;
-  transform: translateY(10px);
-  transition: .35s cubic-bezier(.2,.8,.2,1);
-
+  transform:translateY(14px);
+  transition:.35s cubic-bezier(.2,.8,.2,1);
   display:flex;
   justify-content:space-between;
-  gap:12px;
   align-items:flex-end;
+  gap:12px;
 }
 
-.work:hover .work-info{
-  opacity:1;
-  transform: translateY(0);
+.work:hover::after{opacity:1;}
+.work:hover .work-info{opacity:1; transform:translateY(0);}
+
+.work-title{
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:-.2px;
 }
-
-.work-title{font-size:16px;font-weight:900;letter-spacing:-.2px;}
-.work-desc{margin-top:5px;font-size:13px;color:rgba(17,17,17,.70);line-height:1.35;max-width:560px;}
-.work-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
-
+.work-desc{
+  margin-top:6px;
+  font-size:13px;
+  color:rgba(255,255,255,.82);
+  line-height:1.35;
+  max-width:560px;
+}
+.work-meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
 .chip{
   font-size:12px;
   padding:7px 10px;
   border-radius:999px;
-  border:1px solid var(--stroke);
-  background: rgba(255,255,255,.86);
-  color: rgba(17,17,17,.78);
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
   font-weight:800;
+  color:#fff;
 }
 
-/* Reveal */
+/* reveal on scroll */
 .reveal{
   opacity:0;
   transform: translateY(16px);
-  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
 }
 .reveal.in{
   opacity:1;
   transform: translateY(0);
 }
 
-/* Footer contacts */
+/* footer */
 .footer{
   margin-top:70px;
   padding:22px 0 8px;
-  border-top:1px solid var(--stroke);
+  border-top:1px solid rgba(17,17,17,.10);
   display:flex;
   justify-content:space-between;
   gap:16px;
@@ -283,19 +343,17 @@ a{color:inherit;text-decoration:none;}
   flex-wrap:wrap;
 }
 .footer .links a{
-  color:rgba(17,17,17,.85);
+  color:rgba(17,17,17,.86);
   font-weight:900;
-  border-bottom:1px solid rgba(17,17,17,.20);
+  border-bottom:1px solid rgba(17,17,17,.22);
 }
-.footer .links a:hover{
-  border-bottom-color: rgba(17,17,17,.55);
-}
+.footer .links a:hover{border-bottom-color: rgba(17,17,17,.55);}
 
 /* Modals */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.82);
+  background:rgba(0,0,0,.86);
   display:none;
   align-items:center;
   justify-content:center;
@@ -320,151 +378,182 @@ a{color:inherit;text-decoration:none;}
   background: rgba(255,255,255,.04);
 }
 
-/* Mobile */
+/* Vimeo modal */
+.vimeo-wrap{
+  width:min(1280px, 92vw);
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: 0 0 120px rgba(0,0,0,.6);
+}
+.vimeo-wrap iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* mobile */
 @media(max-width:980px){
-  body{padding:20px;}
-  .header{flex-direction:column; align-items:flex-start;}
-  .header .actions{justify-content:flex-start;}
-  .hero-video .frame{
-    height: 52vh;
-    min-height: 320px;
-  }
-  .works{grid-template-columns: 1fr; }
-  .work{grid-column: span 12; min-height: 320px;}
+  .container{padding:20px;}
+  .topbar-inner{padding:12px 20px;}
+  .hero-frame{height:56vh; min-height:320px;}
+  .hero-overlay .controls{left:16px; bottom:16px;}
+
+  .works{grid-template-columns:1fr;}
+  .work{grid-column:span 12; min-height:320px;}
+  /* no hover on mobile — show overlay always */
+  .work::after{opacity:1;}
+  .work-info{opacity:1; transform:none;}
   .work.fit img,.work.fit video{padding:12px;}
-  /* On mobile hover doesn't exist — show info always */
-  .work-info{opacity:1;transform:none;}
 }
 </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <header class="header">
-      <div class="brand">
-        <h1>Timur Nizamov</h1>
-        <p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
-      </div>
-
-      <div class="actions">
-        <a class="pill" href="#works">Works ↓</a>
-        <a class="pill" href="#contact">Contact</a>
-      </div>
-    </header>
-
-    <hr class="hr" />
-
-    <!-- HERO VIDEO (Vimeo) -->
-    <section class="hero-video" aria-label="Featured work">
-      <div class="frame">
-        <!-- Autoplay note: browsers require muted for autoplay -->
-        <iframe
-          id="vimeoHero"
-          src="https://player.vimeo.com/video/1170682380?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-          title="Featured video">
-        </iframe>
-      </div>
-
-      <div class="hero-caption">
-        <div class="left">
-          <div class="title">Featured — LinguaGO</div>
-          <div class="desc">Autoplay (muted). Click the video to open controls / sound.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Works -->
-    <div class="section-title" id="works">More Works</div>
-
-    <section class="works">
-
-      <!-- Drollstyle (no crop: fit + blurred backdrop) -->
-      <article class="work s7 fit reveal"
-        style="--bgimg:url('images/poster complete.png')"
-        role="button" tabindex="0"
-        onclick="openLocalPreviewVideo('images/complete.mp4')">
-
-        <video muted loop playsinline poster="images/poster complete.png" data-src="images/complete.mp4"></video>
-
-        <div class="work-info">
-          <div>
-            <div class="work-title">Drollstyle Characters</div>
-            <div class="work-desc">Stylized character animation for branding</div>
-          </div>
-          <div class="work-meta">
-            <span class="chip">2D</span>
-            <span class="chip">Motion</span>
-            <span class="chip">Character</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Nokia (image opens) -->
-      <article class="work s5 fit reveal"
-        style="--bgimg:url('images/phone 9110.png')"
-        role="button" tabindex="0"
-        onclick="openImage('images/phone 9110.png')">
-
-        <img src="images/phone 9110.png" alt="Nokia 9110 Concept">
-
-        <div class="work-info">
-          <div>
-            <div class="work-title">Nokia 9110 Concept</div>
-            <div class="work-desc">90X product visual</div>
-          </div>
-          <div class="work-meta">
-            <span class="chip">3D</span>
-            <span class="chip">Product</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Ear (image opens) -->
-      <article class="work s4 fit reveal"
-        style="--bgimg:url('images/ear.png')"
-        role="button" tabindex="0"
-        onclick="openImage('images/ear.png')">
-
-        <img src="images/ear.png" alt="Ear Illustration">
-
-        <div class="work-info">
-          <div>
-            <div class="work-title">Ear Illustration</div>
-            <div class="work-desc">Experimental minimal 3D illustration</div>
-          </div>
-          <div class="work-meta">
-            <span class="chip">3D</span>
-            <span class="chip">Concept</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- (Optional) Add another card later; the grid will “pack” it densely -->
-      <!-- Example placeholder:
-      <article class="work s8 cover reveal" style="--bgimg:url('images/some.png')"> ... </article>
-      -->
-
-    </section>
-
-    <footer class="footer" id="contact">
-      <div class="links">
-        <a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
-        <a href="mailto:badkidsfromoregon@yandex.ru">Email</a>
-        <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a>
-      </div>
-      <div>© 2026 Timur Nizamov</div>
-    </footer>
-
+<!-- Sticky top bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-mini">Timur Nizamov</div>
+    <div class="nav">
+      <a class="pill" href="#works">Works</a>
+      <a class="pill" href="#contact">Contact</a>
+    </div>
   </div>
+</div>
 
-  <!-- IMAGE MODAL -->
-  <div class="modal" id="imageModal">
-    <div class="modal-close" onclick="closeImage()">✕</div>
-    <img id="modalImage" alt="Preview">
+<div class="container">
+
+  <!-- Title -->
+  <section class="hero-title">
+    <h1>Timur Nizamov</h1>
+    <p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
+  </section>
+
+</div>
+
+<!-- Full-bleed Vimeo hero -->
+<section class="hero-video" aria-label="Featured work">
+  <div class="hero-frame">
+    <!-- Autoplay works reliably only muted -->
+    <iframe
+      id="vimeoHero"
+      src="https://player.vimeo.com/video/1170682380?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      title="Featured video">
+    </iframe>
+
+    <div class="hero-overlay">
+      <div class="controls">
+        <button class="hero-hint" onclick="openVimeoSound()">Sound on</button>
+        <a class="hero-badge" href="#works">More works ↓</a>
+      </div>
+    </div>
   </div>
+</section>
+
+<div class="container">
+
+  <div class="section-title" id="works">Selected Works</div>
+
+  <!-- Works grid -->
+  <section class="works">
+
+    <!-- Drollstyle (fit so it doesn't crop; hover preview) -->
+    <article class="work s7 fit reveal"
+      style="--bgimg:url('images/poster complete.png')"
+      role="button" tabindex="0"
+      onclick="openLocalVideo('images/complete.mp4')">
+
+      <video muted loop playsinline poster="images/poster complete.png" data-src="images/complete.mp4"></video>
+
+      <div class="work-info">
+        <div>
+          <div class="work-title">Drollstyle Characters</div>
+          <div class="work-desc">Stylized character animation for branding</div>
+        </div>
+        <div class="work-meta">
+          <span class="chip">2D</span>
+          <span class="chip">Motion</span>
+          <span class="chip">Character</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Nokia (fit, opens image) -->
+    <article class="work s5 fit reveal"
+      style="--bgimg:url('images/phone 9110.png')"
+      role="button" tabindex="0"
+      onclick="openImage('images/phone 9110.png')">
+
+      <img src="images/phone 9110.png" alt="Nokia 9110 Concept">
+
+      <div class="work-info">
+        <div>
+          <div class="work-title">Nokia 9110 Concept</div>
+          <div class="work-desc">90X product visual</div>
+        </div>
+        <div class="work-meta">
+          <span class="chip">3D</span>
+          <span class="chip">Product</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Ear (fit, opens image) -->
+    <article class="work s4 fit reveal"
+      style="--bgimg:url('images/ear.png')"
+      role="button" tabindex="0"
+      onclick="openImage('images/ear.png')">
+
+      <img src="images/ear.png" alt="Ear Illustration">
+
+      <div class="work-info">
+        <div>
+          <div class="work-title">Ear Illustration</div>
+          <div class="work-desc">Experimental minimal 3D illustration</div>
+        </div>
+        <div class="work-meta">
+          <span class="chip">3D</span>
+          <span class="chip">Concept</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Если захочешь добавить ещё — просто копируй карточку и меняй size-класс (s4/s5/s6/s7/s8/s12) -->
+
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="links">
+      <a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
+      <a href="mailto:badkidsfromoregon@yandex.ru">Email</a>
+      <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a>
+    </div>
+    <div>© 2026 Timur Nizamov</div>
+  </footer>
+
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="modal" id="imageModal">
+  <div class="modal-close" onclick="closeImage()">✕</div>
+  <img id="modalImage" alt="Preview">
+</div>
+
+<!-- VIMEO SOUND MODAL -->
+<div class="modal" id="vimeoModal">
+  <div class="modal-close" onclick="closeVimeoSound()">✕</div>
+  <div class="vimeo-wrap">
+    <iframe id="vimeoSoundFrame"
+      src=""
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      title="Vimeo sound">
+    </iframe>
+  </div>
+</div>
 
 <script>
 /* Hover local preview videos (lazy load) */
@@ -488,8 +577,8 @@ document.querySelectorAll('.work video').forEach(v => {
   });
 });
 
-/* Click on local video card: open in new tab */
-function openLocalPreviewVideo(src){
+function openLocalVideo(src){
+  // simplest: open the mp4 in a new tab
   window.open(src, "_blank");
 }
 
@@ -507,6 +596,23 @@ function closeImage(){
   m.style.display = 'none';
 }
 
+/* Vimeo sound modal:
+   Autoplay WITH SOUND is often blocked unless user interacts.
+   Clicking "Sound on" is user interaction => OK.
+*/
+function openVimeoSound(){
+  const m = document.getElementById('vimeoModal');
+  const f = document.getElementById('vimeoSoundFrame');
+  f.src = "https://player.vimeo.com/video/1170682380?autoplay=1&muted=0&loop=1&title=0&byline=0&portrait=0&controls=1";
+  m.style.display = "flex";
+}
+function closeVimeoSound(){
+  const m = document.getElementById('vimeoModal');
+  const f = document.getElementById('vimeoSoundFrame');
+  f.src = "";
+  m.style.display = "none";
+}
+
 /* Scroll reveal */
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
@@ -519,7 +625,7 @@ const io = new IntersectionObserver((entries)=>{
 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* Keyboard accessibility (Enter/Space) */
+/* Keyboard accessibility */
 document.querySelectorAll('[role="button"]').forEach(el=>{
   el.addEventListener('keydown', (ev)=>{
     if(ev.key === 'Enter' || ev.key === ' '){
