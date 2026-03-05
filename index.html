@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Timur Nizamov — Motion Designer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -11,383 +11,430 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
 html{scroll-behavior:smooth;}
 body{
-background:#050505;
-color:white;
-padding:80px;
-overflow-x:hidden;
+  background:#050505;
+  color:white;
+  padding:80px;
+  overflow-x:hidden;
 }
 
 /* HERO */
 .hero h1{
-font-size:92px;
-font-weight:800;
-letter-spacing:-3px;
-line-height:.95;
+  font-size:92px;
+  font-weight:800;
+  letter-spacing:-3px;
+  line-height:.95;
 }
 .hero span{color:#ff2f92;}
 .hero p{
-font-size:22px;
-color:#aaa;
-max-width:720px;
-margin-top:24px;
+  font-size:22px;
+  color:#aaa;
+  max-width:720px;
+  margin-top:24px;
 }
 .hero .cta{
-margin-top:36px;
-display:inline-block;
-padding:16px 44px;
-background:#ff2f92;
-border-radius:60px;
-color:white;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
+  margin-top:36px;
+  display:inline-block;
+  padding:16px 44px;
+  background:#ff2f92;
+  border-radius:60px;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
 }
 .hero .cta:hover{transform:scale(1.05);}
 
 /* SECTION */
 .section-title{
-margin-top:140px;
-font-size:34px;
-font-weight:700;
+  margin-top:140px;
+  font-size:34px;
+  font-weight:700;
 }
 
 /* PROJECTS */
 .projects-scroll{
-margin-top:40px;
-display:flex;
-gap:32px;
-overflow-x:auto;
-padding-bottom:40px;
-scroll-snap-type:x mandatory;
+  margin-top:40px;
+  display:flex;
+  gap:32px;
+  overflow-x:auto;
+  padding-bottom:40px;
+  scroll-snap-type:x mandatory;
 }
 .projects-scroll::-webkit-scrollbar{height:8px;}
-.projects-scroll::-webkit-scrollbar-thumb{
-background:#222;border-radius:10px;
-}
+.projects-scroll::-webkit-scrollbar-thumb{background:#222;border-radius:10px;}
 
+/* CARDS */
 .project-card{
-position:relative;
-min-width:420px;
-height:560px;
-border-radius:30px;
-overflow:hidden;
-background:#111;
-cursor:pointer;
-scroll-snap-align:start;
-transition:.5s cubic-bezier(.2,.8,.2,1);
-box-shadow:0 40px 80px rgba(0,0,0,.6);
+  position:relative;
+  min-width:420px;
+  height:560px;
+  border-radius:30px;
+  overflow:hidden;
+  background:#111;
+  cursor:pointer;
+  scroll-snap-align:start;
+  transition:.5s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
 }
-
 .project-card.large{min-width:760px;height:560px;}
 
 .project-card img,
 .project-card video{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:1.2s ease;
-filter:brightness(.85);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:1.2s ease;
+  filter:brightness(.85);
 }
 
-.project-card:hover{
-transform:translateY(-12px) scale(1.02);
-}
-
+.project-card:hover{transform:translateY(-12px) scale(1.02);}
 .project-card:hover img,
 .project-card:hover video{
-transform:scale(1.18);
-filter:brightness(1);
+  transform:scale(1.18);
+  filter:brightness(1);
 }
 
+/* GLASS OVERLAY */
 .project-overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));
-display:flex;
-flex-direction:column;
-justify-content:flex-end;
-padding:32px;
-backdrop-filter:blur(10px);
-opacity:0;
-transition:.5s;
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:32px;
+  backdrop-filter:blur(10px);
+  opacity:0;
+  transition:.5s;
 }
-
 .project-card:hover .project-overlay{opacity:1;}
 
 .project-title{font-size:26px;font-weight:700;}
 .project-desc{font-size:14px;color:#aaa;margin-top:6px;}
 .project-tags{display:flex;gap:10px;margin-top:14px;}
 .tag{
-font-size:12px;
-padding:6px 14px;
-background:rgba(255,255,255,.08);
-border-radius:30px;
-border:1px solid rgba(255,255,255,.08);
+  font-size:12px;
+  padding:6px 14px;
+  background:rgba(255,255,255,.08);
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.08);
 }
 
 /* ABOUT */
 .about{
-margin-top:180px;
-max-width:760px;
-font-size:22px;
-color:#bbb;
-line-height:1.6;
+  margin-top:180px;
+  max-width:760px;
+  font-size:22px;
+  color:#bbb;
+  line-height:1.6;
 }
 
 /* CONTACT SECTION */
 .contact-section{
-margin-top:200px;
-padding:140px 40px;
-border-radius:40px;
-position:relative;
-text-align:center;
-background:#070707;
+  margin-top:200px;
+  padding:140px 40px;
+  border-radius:40px;
+  position:relative;
+  text-align:center;
+  background:#070707;
 }
 
 /* Magnetic CTA sticker */
 .contact-sticker{
-margin-bottom:20px;
-display:flex;
-justify-content:center;
-position:relative;
-z-index:2;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:center;
+  position:relative;
+  z-index:2;
 }
-
 .contact-sticker span{
-display:inline-block;
-padding:6px 18px;
-font-size:18px;
-font-weight:600;
-color:white;
-border:1px solid #ff2f92;
-border-radius:12px;
-background:rgba(255,255,255,0.05);
-animation:magnetBounce 2.2s ease-in-out infinite;
-opacity:.9;
-transition:all 0.3s ease;
+  display:inline-block;
+  padding:6px 18px;
+  font-size:18px;
+  font-weight:600;
+  color:white;
+  border:1px solid #ff2f92;
+  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  animation:magnetBounce 2.2s ease-in-out infinite;
+  opacity:.9;
+  transition:all 0.3s ease;
 }
-
-.contact-sticker span:hover{
-transform:scale(1.1);
-opacity:1;
-}
-
+.contact-sticker span:hover{transform:scale(1.1);opacity:1;}
 @keyframes magnetBounce{
-0%,100% { transform: translateY(0px);}
-25% { transform: translateY(-6px);}
-50% { transform: translateY(-3px);}
-75% { transform: translateY(-6px);}
+  0%,100%{transform:translateY(0px);}
+  25%{transform:translateY(-6px);}
+  50%{transform:translateY(-3px);}
+  75%{transform:translateY(-6px);}
 }
 
-/* contact title */
 .contact-title{
-font-size:38px;
-font-weight:700;
-margin-bottom:80px;
-letter-spacing:-0.5px;
-color:#ccc;
+  font-size:38px;
+  font-weight:700;
+  margin-bottom:80px;
+  letter-spacing:-0.5px;
+  color:#ccc;
 }
 
-/* contact cards */
 .contact-grid{
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
 }
 
 .contact-card{
-position:relative;
-padding:28px 70px;
-font-size:18px;
-font-weight:600;
-border-radius:18px;
-color:white;
-text-decoration:none;
-background:#111;
-border:1px solid rgba(255,255,255,.08);
-overflow:hidden;
-transition:.4s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+  padding:28px 70px;
+  font-size:18px;
+  font-weight:600;
+  border-radius:18px;
+  color:white;
+  text-decoration:none;
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+  transition:.4s cubic-bezier(.2,.8,.2,1);
 }
 
 /* animated subtle gradient border */
 .contact-card::before{
-content:"";
-position:absolute;
-inset:-1px;
-border-radius:20px;
-background:linear-gradient(
-90deg,
-#ff2f92,
-#6c2fff,
-#00f0ff,
-#ff2f92
-);
-background-size:300% 300%;
-animation:gradientMove 8s linear infinite;
-z-index:-1;
-opacity:.6;
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(90deg,#ff2f92,#6c2fff,#00f0ff,#ff2f92);
+  background-size:300% 300%;
+  animation:gradientMove 8s linear infinite;
+  z-index:-1;
+  opacity:.6;
 }
-
 @keyframes gradientMove{
-0%{background-position:0% 50%;}
-100%{background-position:300% 50%;}
+  0%{background-position:0% 50%;}
+  100%{background-position:300% 50%;}
 }
 
-/* light sweep softer */
+/* light sweep */
 .contact-card::after{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:50%;
-height:100%;
-background:linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,.08),
-transparent
-);
-transform:skewX(-25deg);
-transition:.8s;
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.08),transparent);
+  transform:skewX(-25deg);
+  transition:.8s;
 }
-
 .contact-card:hover::after{left:160%;}
 .contact-card:hover{
-transform:translateY(-8px) scale(1.04);
-box-shadow:0 30px 80px rgba(0,0,0,.7);
+  transform:translateY(-8px) scale(1.04);
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
 }
 
 /* FOOTER */
 footer{
-margin-top:160px;
-text-align:center;
-color:#666;
-font-size:14px;
+  margin-top:160px;
+  text-align:center;
+  color:#666;
+  font-size:14px;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.modal video{
+  max-width:1200px;
+  width:92%;
+  border-radius:24px;
+  box-shadow:0 0 100px rgba(0,0,0,.8);
+}
+.modal-close{
+  position:fixed;
+  top:30px;
+  right:40px;
+  font-size:32px;
+  cursor:pointer;
 }
 
 /* FILM GRAIN */
 body::after{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:url("https://grainy-gradients.vercel.app/noise.svg");
-opacity:.04;
-mix-blend-mode:overlay;
-z-index:9999;
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity:.04;
+  mix-blend-mode:overlay;
+  z-index:9999;
 }
 
 /* MOBILE */
 @media(max-width:900px){
-body{padding:24px;}
-.hero h1{font-size:56px;}
-.projects-scroll{gap:18px;}
-.project-card{min-width:280px;height:420px;}
-.project-card.large{min-width:280px;height:420px;}
-.contact-title{font-size:28px;}
-.contact-card{padding:24px 40px;font-size:16px;}
-.contact-sticker span{font-size:16px;padding:4px 14px;}
+  body{padding:24px;}
+  .hero h1{font-size:56px;}
+  .projects-scroll{gap:18px;}
+  .project-card{min-width:280px;height:420px;}
+  .project-card.large{min-width:280px;height:420px;}
+  .contact-title{font-size:28px;}
+  .contact-card{padding:24px 40px;font-size:16px;}
+  .contact-sticker span{font-size:16px;padding:4px 14px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <section class="hero">
-<h1>Timur <span>Nizamov</span></h1>
-<p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
-<a class="cta" href="#contact">Contact me</a>
+  <h1>Timur <span>Nizamov</span></h1>
+  <p>Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.</p>
+  <a class="cta" href="#contact">Contact me</a>
 </section>
 
+<!-- PROJECTS -->
 <div class="section-title">Selected Works</div>
 
 <div class="projects-scroll">
 
-<div class="project-card large" onclick="openModal('images/complete.mp4')">
-<video muted loop playsinline poster="images/poster complete.png"></video>
-<div class="project-overlay">
-<div class="project-title">Drollstyle Characters</div>
-<div class="project-desc">Stylized character animation for branding</div>
-<div class="project-tags">
-<div class="tag">2D</div>
-<div class="tag">Motion</div>
-<div class="tag">Character</div>
-</div>
-</div>
+  <!-- BIG HERO PROJECT -->
+  <div class="project-card large" onclick="openModal('images/complete.mp4')">
+    <!-- preview plays on hover -->
+    <video muted loop playsinline poster="images/poster complete.png" data-src="images/complete.mp4"></video>
+    <div class="project-overlay">
+      <div class="project-title">Drollstyle Characters</div>
+      <div class="project-desc">Stylized character animation for branding</div>
+      <div class="project-tags">
+        <div class="tag">2D</div>
+        <div class="tag">Motion</div>
+        <div class="tag">Character</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOKIA -->
+  <div class="project-card">
+    <img src="images/phone 9110.png" alt="Nokia 9110 Concept">
+    <div class="project-overlay">
+      <div class="project-title">Nokia 9110 Concept</div>
+      <div class="project-desc">90X product visual</div>
+      <div class="project-tags">
+        <div class="tag">3D</div>
+        <div class="tag">Product</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EAR -->
+  <div class="project-card">
+    <img src="images/ear.png" alt="Ear Illustration">
+    <div class="project-overlay">
+      <div class="project-title">Ear Illustration</div>
+      <div class="project-desc">Experimental minimal 3D illustration</div>
+      <div class="project-tags">
+        <div class="tag">3D</div>
+        <div class="tag">Concept</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LINGUAGO (NEW) -->
+  <div class="project-card" onclick="openModal('images/LinguaGO.mp4')">
+    <!-- preview plays on hover -->
+    <video muted loop playsinline poster="images/LinguaGO_PNG.png" data-src="images/LinguaGO.mp4"></video>
+    <div class="project-overlay">
+      <div class="project-title">LinguaGO</div>
+      <div class="project-desc">Product motion / UI concept</div>
+      <div class="project-tags">
+        <div class="tag">Motion</div>
+        <div class="tag">UI</div>
+        <div class="tag">SaaS</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="project-card">
-<img src="images/phone 9110.png">
-<div class="project-overlay">
-<div class="project-title">Nokia 9110 Concept</div>
-<div class="project-desc">90X product visual</div>
-<div class="project-tags">
-<div class="tag">3D</div>
-<div class="tag">Product</div>
-</div>
-</div>
-</div>
-
-<div class="project-card">
-<img src="images/ear.png">
-<div class="project-overlay">
-<div class="project-title">Ear Illustration</div>
-<div class="project-desc">Experimental minimal 3D illustration</div>
-<div class="project-tags">
-<div class="tag">3D</div>
-<div class="tag">Concept</div>
-</div>
-</div>
-</div>
-
-</div>
-
+<!-- ABOUT -->
 <section class="about">
-<p>
-I’m a motion designer and 3D illustrator focused on cinematic storytelling, futuristic product visuals and premium digital identity.  
-I help brands stand out through animation, CGI and visual systems.
-</p>
+  <p>
+    I’m a motion designer and 3D illustrator focused on cinematic storytelling, futuristic product visuals and premium digital identity.<br>
+    I help brands stand out through animation, CGI and visual systems.
+  </p>
 </section>
 
+<!-- CONTACT -->
 <section class="contact-section" id="contact">
+  <div class="contact-sticker">
+    <span>Say hi 👋</span>
+  </div>
 
-<div class="contact-sticker">
-  <span>Say hi 👋</span>
-</div>
+  <h2 class="contact-title">Let’s create something powerful</h2>
 
-<h2 class="contact-title">Let’s create something powerful</h2>
-
-<div class="contact-grid">
-  <a href="mailto:badkidsfromoregon@yandex.ru" class="contact-card">Email</a>
-  <a href="https://t.me/badkids_FO" target="_blank" class="contact-card">Telegram</a>
-  <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank" class="contact-card">Dribbble</a>
-</div>
+  <div class="contact-grid">
+    <a href="mailto:badkidsfromoregon@yandex.ru" class="contact-card">Email</a>
+    <a href="https://t.me/badkids_FO" target="_blank" class="contact-card">Telegram</a>
+    <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank" class="contact-card">Dribbble</a>
+  </div>
 </section>
 
 <footer>
-<div>© 2026 Timur Nizamov</div>
+  <div>© 2026 Timur Nizamov</div>
 </footer>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-close" onclick="closeModal()">✕</div>
+  <video id="modalVideo" controls playsinline></video>
+</div>
+
 <script>
-document.querySelectorAll('.project-card video').forEach(v=>{
-v.parentElement.addEventListener('mouseenter',()=>v.play());
-v.parentElement.addEventListener('mouseleave',()=>{
-v.pause();v.currentTime=0;
+/**
+ * Hover previews for project videos:
+ * - videos have data-src
+ * - we lazy-attach src only once (on first hover) to reduce initial load
+ */
+document.querySelectorAll('.project-card video').forEach(v => {
+  const src = v.getAttribute('data-src');
+  let loaded = false;
+
+  v.parentElement.addEventListener('mouseenter', () => {
+    if (src && !loaded) {
+      v.src = src;
+      v.load();
+      loaded = true;
+    }
+    // try play; if browser blocks, it will just stay on poster
+    v.play().catch(()=>{});
+  });
+
+  v.parentElement.addEventListener('mouseleave', () => {
+    v.pause();
+    try { v.currentTime = 0; } catch(e){}
+  });
 });
-});
+
+// modal
 function openModal(src){
-const m=document.getElementById('modal');
-const v=document.getElementById('modalVideo');
-v.src=src;
-m.style.display='flex';
-v.play();
+  const m = document.getElementById('modal');
+  const v = document.getElementById('modalVideo');
+  v.src = src;
+  m.style.display = 'flex';
+  v.play().catch(()=>{});
 }
 function closeModal(){
-const m=document.getElementById('modal');
-const v=document.getElementById('modalVideo');
-v.pause();v.src="";
-m.style.display='none';
+  const m = document.getElementById('modal');
+  const v = document.getElementById('modalVideo');
+  v.pause();
+  v.src = "";
+  m.style.display = 'none';
 }
 </script>
 
