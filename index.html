@@ -5,304 +5,368 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Timur Nizamov — Motion Designer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Plus Jakarta Sans",sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-background:#f4f4f4;
-color:#111;
-overflow-x:hidden;
+  background:#f4f4f4;
+  color:#111;
+  overflow-x:hidden;
 }
 
 .container{
-max-width:1320px;
-margin:auto;
-padding:64px;
+  max-width:1320px;
+  margin:0 auto;
+  padding:64px;
 }
 
 /* HERO TEXT */
 .hero-title h1{
-font-size:clamp(56px,6vw,96px);
-font-weight:800;
-letter-spacing:-2px;
-line-height:.95;
+  font-size:clamp(56px,6vw,96px);
+  font-weight:800;
+  letter-spacing:-2px;
+  line-height:.95;
 }
 
 .hero-title p{
-margin-top:18px;
-font-size:18px;
-color:rgba(0,0,0,.6);
-max-width:720px;
+  margin-top:18px;
+  font-size:18px;
+  color:rgba(0,0,0,.58);
+  max-width:760px;
+  line-height:1.55;
+  letter-spacing:.1px;
 }
 
 /* HERO VIDEO */
 .hero-video{
-width:100vw;
-position:relative;
-left:50%;
-transform:translateX(-50%);
-margin-top:40px;
+  width:100vw;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  margin-top:40px;
 }
 
 .hero-frame{
-position:relative;
-width:100%;
-height:100vh;
-overflow:hidden;
-background:black;
+  position:relative;
+  width:100%;
+  height:100vh;
+  min-height:620px;
+  overflow:hidden;
+  background:#000;
 }
 
-/* Vimeo cover fix */
+/* Vimeo cover hack */
 .hero-frame iframe{
-position:absolute;
-top:50%;
-left:50%;
-width:177.78vh;
-height:56.25vw;
-min-width:100vw;
-min-height:100vh;
-transform:translate(-50%,-50%);
-border:0;
-display:block;
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:177.78vh;
+  height:56.25vw;
+  min-width:100vw;
+  min-height:100vh;
+  transform:translate(-50%,-50%);
+  border:0;
+  display:block;
 }
 
-/* HERO CONTROLS */
 .hero-overlay{
-position:absolute;
-bottom:40px;
-left:40px;
-display:flex;
-gap:12px;
+  position:absolute;
+  bottom:40px;
+  left:40px;
+  display:flex;
+  gap:12px;
+  z-index:5;
 }
 
 .hero-btn{
-padding:10px 18px;
-border-radius:30px;
-background:rgba(0,0,0,.8);
-color:white;
-font-weight:600;
-cursor:pointer;
-font-size:14px;
-text-decoration:none;
-border:none;
+  padding:10px 18px;
+  border-radius:30px;
+  background:rgba(0,0,0,.82);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  font-size:14px;
+  text-decoration:none;
+  border:none;
+  backdrop-filter:blur(6px);
 }
 
-/* INTRO TEXT */
+/* INTRO BLOCK */
 .project-intro{
-padding:140px 0 120px;
-background:#f4f4f4;
+  padding:170px 0 140px;
+  background:#f4f4f4;
 }
 
 .intro-container{
-max-width:760px;
-margin-left:120px;
+  max-width:980px;
+  margin-left:120px;
 }
 
-.project-intro p{
-font-size:40px;
-line-height:1.2;
-font-weight:500;
-letter-spacing:-0.6px;
-color:#111;
+.intro-icon{
+  font-size:22px;
+  margin-bottom:26px;
+  opacity:.6;
+  color:#111;
 }
 
-/* fade + slide */
-.reveal-text{
-opacity:0;
-transform:translateY(36px);
-transition:opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+/* line wrapper */
+.stagger-text{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
-.reveal-text.in{
-opacity:1;
-transform:translateY(0);
+.stagger-line{
+  display:block;
+  font-size:56px;
+  line-height:1.12;
+  font-weight:500;
+  letter-spacing:.7px;
+  color:#111;
+  opacity:0;
+  transform:translateY(38px);
+  transition:
+    opacity .95s ease,
+    transform .95s cubic-bezier(.2,.8,.2,1);
+  will-change:transform, opacity;
 }
 
-/* WORKS GRID */
+.reveal-text.in .stagger-line{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-text.in .stagger-line:nth-child(1){transition-delay:.06s;}
+.reveal-text.in .stagger-line:nth-child(2){transition-delay:.18s;}
+.reveal-text.in .stagger-line:nth-child(3){transition-delay:.30s;}
+
+/* WORKS */
 .section-title{
-margin-top:80px;
-font-weight:700;
-font-size:14px;
-opacity:.6;
+  margin-top:40px;
+  font-weight:700;
+  font-size:14px;
+  opacity:.55;
+  letter-spacing:.2px;
 }
 
 .works{
-margin-top:20px;
-display:grid;
-grid-template-columns:repeat(12,1fr);
-gap:26px;
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:26px;
+  align-items:start;
 }
 
-/* CARD */
+/* CARDS */
 .work{
-position:relative;
-overflow:hidden;
-border-radius:20px;
-cursor:pointer;
-transition:.4s;
+  --offY:0px;
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  cursor:pointer;
+  transform:translateY(var(--offY));
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    box-shadow .45s ease;
 }
 
 .work:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 60px rgba(0,0,0,.12);
+  transform:translateY(calc(var(--offY) - 8px));
+  box-shadow:0 20px 60px rgba(0,0,0,.12);
 }
 
 .work img,
 .work video{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-transition:1.2s;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform 1.15s ease;
 }
 
 .work:hover img,
 .work:hover video{
-transform:scale(1.05);
+  transform:scale(1.05);
 }
 
 /* SIZES */
 .s7{grid-column:span 7;height:520px;}
 .s5{grid-column:span 5;height:480px;}
-.s4{grid-column:span 4;height:420px;}
+.s4{grid-column:span 4;height:440px;}
 
-/* INFO */
+/* OVERLAY */
 .work::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(transparent,rgba(0,0,0,.6));
-opacity:0;
-transition:.4s;
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.64));
+  opacity:0;
+  transition:.35s ease;
 }
 
 .work-info{
-position:absolute;
-bottom:20px;
-left:20px;
-right:20px;
-color:white;
-opacity:0;
-transition:.4s;
+  position:absolute;
+  bottom:22px;
+  left:22px;
+  right:22px;
+  color:#fff;
+  opacity:0;
+  transform:translateY(16px);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
 }
 
-.work:hover::after{opacity:1;}
-.work:hover .work-info{opacity:1;}
+.work:hover::after{
+  opacity:1;
+}
+
+.work:hover .work-info{
+  opacity:1;
+  transform:translateY(0);
+}
 
 .work-title{
-font-size:18px;
-font-weight:700;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:-.2px;
 }
 
 .work-desc{
-font-size:13px;
-opacity:.8;
-margin-top:4px;
+  font-size:13px;
+  opacity:.84;
+  margin-top:5px;
+  letter-spacing:.15px;
 }
 
-/* reveal cards */
+/* REVEAL */
 .reveal{
-opacity:0;
-transform:translateY(24px);
-transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+  opacity:0;
+  transform:translateY(calc(var(--offY) + 26px));
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.2,.8,.2,1);
 }
 
 .reveal.in{
-opacity:1;
-transform:translateY(0);
+  opacity:1;
+  transform:translateY(var(--offY));
 }
 
 /* FOOTER */
 .footer{
-margin-top:100px;
-padding-top:30px;
-border-top:1px solid rgba(0,0,0,.1);
-display:flex;
-justify-content:space-between;
-font-size:14px;
+  margin-top:100px;
+  padding-top:30px;
+  border-top:1px solid rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:14px;
 }
 
 .footer a{
-text-decoration:none;
-color:#111;
-font-weight:600;
-margin-right:16px;
+  text-decoration:none;
+  color:#111;
+  font-weight:600;
+  margin-right:16px;
 }
 
 /* MODAL */
 .modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.9);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:999;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
 }
 
 .modal img{
-max-width:90%;
-max-height:80%;
-border-radius:16px;
+  max-width:90%;
+  max-height:80%;
+  border-radius:16px;
 }
 
 .close{
-position:absolute;
-top:40px;
-right:40px;
-color:white;
-font-size:32px;
-cursor:pointer;
+  position:absolute;
+  top:40px;
+  right:40px;
+  color:#fff;
+  font-size:32px;
+  cursor:pointer;
 }
 
+/* MOBILE */
 @media(max-width:980px){
-.container{
-padding:20px;
-}
+  .container{
+    padding:20px;
+  }
 
-.hero-frame{
-height:56vh;
-min-height:320px;
-}
+  .hero-frame{
+    height:56vh;
+    min-height:340px;
+  }
 
-.hero-overlay{
-left:16px;
-bottom:16px;
-flex-wrap:wrap;
-}
+  .hero-overlay{
+    left:16px;
+    bottom:16px;
+    flex-wrap:wrap;
+  }
 
-.project-intro{
-padding:90px 0 80px;
-}
+  .project-intro{
+    padding:100px 0 80px;
+  }
 
-.intro-container{
-max-width:100%;
-margin-left:20px;
-margin-right:20px;
-}
+  .intro-container{
+    max-width:100%;
+    margin-left:20px;
+    margin-right:20px;
+  }
 
-.project-intro p{
-font-size:28px;
-line-height:1.22;
-}
+  .intro-icon{
+    margin-bottom:18px;
+  }
 
-.works{
-grid-template-columns:1fr;
-}
+  .stagger-line{
+    font-size:34px;
+    line-height:1.16;
+    letter-spacing:.45px;
+  }
 
-.s7,.s5,.s4{
-grid-column:span 1;
-height:340px;
-}
+  .works{
+    grid-template-columns:1fr;
+  }
 
-.work::after{
-opacity:1;
-}
+  .s7,.s5,.s4{
+    grid-column:span 1;
+    height:340px;
+  }
 
-.work-info{
-opacity:1;
-}
+  .work{
+    --offY:0px !important;
+  }
+
+  .work::after{
+    opacity:1;
+  }
+
+  .work-info{
+    opacity:1;
+    transform:none;
+  }
 }
 </style>
 </head>
@@ -310,121 +374,119 @@ opacity:1;
 <body>
 
 <div class="container">
-<section class="hero-title">
-<h1>Timur Nizamov</h1>
-<p>
-Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.
-</p>
-</section>
+  <section class="hero-title">
+    <h1>Timur Nizamov</h1>
+    <p>
+      Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.
+    </p>
+  </section>
 </div>
 
-<!-- HERO VIDEO -->
 <section class="hero-video">
-<div class="hero-frame">
-<iframe
-src="https://player.vimeo.com/video/1170682380?background=1&autoplay=1&loop=1&muted=1&autopause=0"
-allow="autoplay; fullscreen"
-allowfullscreen>
-</iframe>
+  <div class="hero-frame">
+    <iframe
+      src="https://player.vimeo.com/video/1170682380?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
 
-<div class="hero-overlay">
-<button class="hero-btn" onclick="openSound()">Sound on</button>
-<a class="hero-btn" href="#works">More works ↓</a>
-</div>
-</div>
+    <div class="hero-overlay">
+      <button class="hero-btn" onclick="openSound()">Sound on</button>
+      <a class="hero-btn" href="#works">More works ↓</a>
+    </div>
+  </div>
 </section>
 
-<!-- INTRO -->
 <section class="project-intro reveal-text">
   <div class="intro-container">
-    <p>
-      LinguaGO is an AI language learning app designed to make conversations easier, more natural and engaging.
-    </p>
+    <div class="intro-icon">✎</div>
+
+    <div class="stagger-text">
+      <span class="stagger-line">LinguaGO is an AI language</span>
+      <span class="stagger-line">learning app designed to make</span>
+      <span class="stagger-line">conversations natural and engaging.</span>
+    </div>
   </div>
 </section>
 
 <div class="container">
 
-<div class="section-title" id="works">Selected Works</div>
+  <div class="section-title" id="works">Selected Works</div>
 
-<section class="works">
+  <section class="works">
 
-<!-- DROLLSTYLE -->
-<div class="work s7 reveal" onclick="openVideo('images/complete.mp4')">
-<video muted loop playsinline poster="images/poster complete.png"></video>
+    <div class="work s7 reveal" style="--offY: 8px;" onclick="openVideo('images/complete.mp4')">
+      <video muted loop playsinline poster="images/poster complete.png"></video>
 
-<div class="work-info">
-<div class="work-title">Drollstyle Characters</div>
-<div class="work-desc">Stylized character animation</div>
-</div>
-</div>
+      <div class="work-info">
+        <div class="work-title">Drollstyle Characters</div>
+        <div class="work-desc">Stylized character animation</div>
+      </div>
+    </div>
 
-<!-- NOKIA -->
-<div class="work s5 reveal" onclick="openImage('images/phone 9110.png')">
-<img src="images/phone 9110.png">
+    <div class="work s5 reveal" style="--offY: 38px;" onclick="openImage('images/phone 9110.png')">
+      <img src="images/phone 9110.png" alt="Nokia 9110">
 
-<div class="work-info">
-<div class="work-title">Nokia 9110</div>
-<div class="work-desc">3D product visual</div>
-</div>
-</div>
+      <div class="work-info">
+        <div class="work-title">Nokia 9110</div>
+        <div class="work-desc">3D product visual</div>
+      </div>
+    </div>
 
-<!-- EAR -->
-<div class="work s4 reveal" onclick="openImage('images/ear.png')">
-<img src="images/ear.png">
+    <div class="work s4 reveal" style="--offY: -14px;" onclick="openImage('images/ear.png')">
+      <img src="images/ear.png" alt="Ear Illustration">
 
-<div class="work-info">
-<div class="work-title">Ear Illustration</div>
-<div class="work-desc">Minimal 3D concept</div>
-</div>
-</div>
+      <div class="work-info">
+        <div class="work-title">Ear Illustration</div>
+        <div class="work-desc">Minimal 3D concept</div>
+      </div>
+    </div>
 
-</section>
+  </section>
 
-<footer class="footer">
-<div>
-<a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
-<a href="mailto:badkidsfromoregon@yandex.ru">Email</a>
-<a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a>
-</div>
+  <footer class="footer">
+    <div>
+      <a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
+      <a href="mailto:badkidsfromoregon@yandex.ru">Email</a>
+      <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a>
+    </div>
 
-<div>© 2026 Timur Nizamov</div>
-</footer>
+    <div>© 2026 Timur Nizamov</div>
+  </footer>
 
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
-<div class="close" onclick="closeModal()">✕</div>
-<img id="modalImg">
+  <div class="close" onclick="closeModal()">✕</div>
+  <img id="modalImg" alt="Preview">
 </div>
 
 <script>
 function openImage(src){
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalImg").src=src;
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalImg").src = src;
 }
 
 function closeModal(){
-document.getElementById("modal").style.display="none";
+  document.getElementById("modal").style.display = "none";
 }
 
 function openVideo(src){
-window.open(src);
+  window.open(src);
 }
 
 function openSound(){
-window.open("https://vimeo.com/1170682380");
+  window.open("https://vimeo.com/1170682380");
 }
 
 /* reveal on scroll */
 const io = new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("in");
-io.unobserve(entry.target);
-}
-});
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("in");
+      io.unobserve(entry.target);
+    }
+  });
 },{threshold:0.15});
 
 document.querySelectorAll(".reveal, .reveal-text").forEach(el=>io.observe(el));
