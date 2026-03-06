@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
 body{
 background:#f4f4f4;
@@ -23,7 +22,6 @@ padding:64px;
 }
 
 /* HERO TEXT */
-
 .hero-title h1{
 font-size:clamp(56px,6vw,96px);
 font-weight:800;
@@ -39,7 +37,6 @@ max-width:720px;
 }
 
 /* HERO VIDEO */
-
 .hero-video{
 width:100vw;
 position:relative;
@@ -56,25 +53,21 @@ overflow:hidden;
 background:black;
 }
 
-/* COVER VIDEO FIX */
-
+/* Vimeo cover fix */
 .hero-frame iframe{
 position:absolute;
 top:50%;
 left:50%;
-
 width:177.78vh;
 height:56.25vw;
-
 min-width:100vw;
 min-height:100vh;
-
 transform:translate(-50%,-50%);
 border:0;
+display:block;
 }
 
 /* HERO CONTROLS */
-
 .hero-overlay{
 position:absolute;
 bottom:40px;
@@ -91,10 +84,42 @@ color:white;
 font-weight:600;
 cursor:pointer;
 font-size:14px;
+text-decoration:none;
+border:none;
+}
+
+/* INTRO TEXT */
+.project-intro{
+padding:140px 0 120px;
+background:#f4f4f4;
+}
+
+.intro-container{
+max-width:760px;
+margin-left:120px;
+}
+
+.project-intro p{
+font-size:40px;
+line-height:1.2;
+font-weight:500;
+letter-spacing:-0.6px;
+color:#111;
+}
+
+/* fade + slide */
+.reveal-text{
+opacity:0;
+transform:translateY(36px);
+transition:opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal-text.in{
+opacity:1;
+transform:translateY(0);
 }
 
 /* WORKS GRID */
-
 .section-title{
 margin-top:80px;
 font-weight:700;
@@ -110,7 +135,6 @@ gap:26px;
 }
 
 /* CARD */
-
 .work{
 position:relative;
 overflow:hidden;
@@ -139,13 +163,11 @@ transform:scale(1.05);
 }
 
 /* SIZES */
-
 .s7{grid-column:span 7;height:520px;}
 .s5{grid-column:span 5;height:480px;}
 .s4{grid-column:span 4;height:420px;}
 
 /* INFO */
-
 .work::after{
 content:"";
 position:absolute;
@@ -179,8 +201,19 @@ opacity:.8;
 margin-top:4px;
 }
 
-/* FOOTER */
+/* reveal cards */
+.reveal{
+opacity:0;
+transform:translateY(24px);
+transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+}
 
+.reveal.in{
+opacity:1;
+transform:translateY(0);
+}
+
+/* FOOTER */
 .footer{
 margin-top:100px;
 padding-top:30px;
@@ -198,7 +231,6 @@ margin-right:16px;
 }
 
 /* MODAL */
-
 .modal{
 position:fixed;
 inset:0;
@@ -224,47 +256,91 @@ font-size:32px;
 cursor:pointer;
 }
 
+@media(max-width:980px){
+.container{
+padding:20px;
+}
+
+.hero-frame{
+height:56vh;
+min-height:320px;
+}
+
+.hero-overlay{
+left:16px;
+bottom:16px;
+flex-wrap:wrap;
+}
+
+.project-intro{
+padding:90px 0 80px;
+}
+
+.intro-container{
+max-width:100%;
+margin-left:20px;
+margin-right:20px;
+}
+
+.project-intro p{
+font-size:28px;
+line-height:1.22;
+}
+
+.works{
+grid-template-columns:1fr;
+}
+
+.s7,.s5,.s4{
+grid-column:span 1;
+height:340px;
+}
+
+.work::after{
+opacity:1;
+}
+
+.work-info{
+opacity:1;
+}
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
 <section class="hero-title">
-
 <h1>Timur Nizamov</h1>
-
 <p>
 Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.
 </p>
-
 </section>
-
 </div>
 
 <!-- HERO VIDEO -->
-
 <section class="hero-video">
-
 <div class="hero-frame">
-
 <iframe
-src="https://player.vimeo.com/video/1170682380?background=1&autoplay=1&loop=1&muted=1"
+src="https://player.vimeo.com/video/1170682380?background=1&autoplay=1&loop=1&muted=1&autopause=0"
 allow="autoplay; fullscreen"
 allowfullscreen>
 </iframe>
 
 <div class="hero-overlay">
-
-<div class="hero-btn" onclick="openSound()">Sound on</div>
-
+<button class="hero-btn" onclick="openSound()">Sound on</button>
 <a class="hero-btn" href="#works">More works ↓</a>
-
 </div>
-
 </div>
+</section>
 
+<!-- INTRO -->
+<section class="project-intro reveal-text">
+  <div class="intro-container">
+    <p>
+      LinguaGO is an AI language learning app designed to make conversations easier, more natural and engaging.
+    </p>
+  </div>
 </section>
 
 <div class="container">
@@ -274,102 +350,84 @@ allowfullscreen>
 <section class="works">
 
 <!-- DROLLSTYLE -->
-
-<div class="work s7" onclick="openVideo('images/complete.mp4')">
-
+<div class="work s7 reveal" onclick="openVideo('images/complete.mp4')">
 <video muted loop playsinline poster="images/poster complete.png"></video>
 
 <div class="work-info">
 <div class="work-title">Drollstyle Characters</div>
 <div class="work-desc">Stylized character animation</div>
 </div>
-
 </div>
 
 <!-- NOKIA -->
-
-<div class="work s5" onclick="openImage('images/phone 9110.png')">
-
+<div class="work s5 reveal" onclick="openImage('images/phone 9110.png')">
 <img src="images/phone 9110.png">
 
 <div class="work-info">
 <div class="work-title">Nokia 9110</div>
 <div class="work-desc">3D product visual</div>
 </div>
-
 </div>
 
 <!-- EAR -->
-
-<div class="work s4" onclick="openImage('images/ear.png')">
-
+<div class="work s4 reveal" onclick="openImage('images/ear.png')">
 <img src="images/ear.png">
 
 <div class="work-info">
 <div class="work-title">Ear Illustration</div>
 <div class="work-desc">Minimal 3D concept</div>
 </div>
-
 </div>
 
 </section>
 
 <footer class="footer">
-
 <div>
-
 <a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
-
 <a href="mailto:badkidsfromoregon@yandex.ru">Email</a>
-
 <a href="https://dribbble.com/Timur_Nizamov_99" target="_blank">Dribbble</a>
-
 </div>
 
 <div>© 2026 Timur Nizamov</div>
-
 </footer>
 
 </div>
 
 <!-- MODAL -->
-
 <div class="modal" id="modal">
-
 <div class="close" onclick="closeModal()">✕</div>
-
 <img id="modalImg">
-
 </div>
 
 <script>
-
 function openImage(src){
-
-document.getElementById("modal").style.display="flex"
-
-document.getElementById("modalImg").src=src
-
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=src;
 }
 
 function closeModal(){
-
-document.getElementById("modal").style.display="none"
-
+document.getElementById("modal").style.display="none";
 }
 
 function openVideo(src){
-
-window.open(src)
-
+window.open(src);
 }
 
 function openSound(){
-
-window.open("https://vimeo.com/1170682380")
-
+window.open("https://vimeo.com/1170682380");
 }
 
+/* reveal on scroll */
+const io = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("in");
+io.unobserve(entry.target);
+}
+});
+},{threshold:0.15});
+
+document.querySelectorAll(".reveal, .reveal-text").forEach(el=>io.observe(el));
 </script>
 
 </body>
