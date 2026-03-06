@@ -48,7 +48,7 @@ body{
   letter-spacing:.1px;
 }
 
-/* HERO VIDEO */
+/* FULL WIDTH VIDEO */
 .hero-video{
   width:100vw;
   position:relative;
@@ -102,42 +102,6 @@ body{
   backdrop-filter:blur(6px);
 }
 
-/* SECOND VIDEO */
-.video-section{
-  width:100vw;
-  position:relative;
-  left:50%;
-  transform:translateX(-50%);
-  margin-top:28px;
-}
-
-.video-wrapper{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  background:#000;
-  overflow:hidden;
-}
-
-.video-wrapper iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-
-.video-description{
-  max-width:1440px;
-  margin:18px auto 0;
-  padding:0 64px;
-  font-size:18px;
-  color:rgba(0,0,0,.58);
-  line-height:1.5;
-  letter-spacing:.1px;
-}
-
 /* INTRO BLOCK */
 .project-intro{
   padding:170px 0 140px;
@@ -186,6 +150,12 @@ body{
 .reveal-text.in .stagger-line:nth-child(1){transition-delay:.06s;}
 .reveal-text.in .stagger-line:nth-child(2){transition-delay:.18s;}
 .reveal-text.in .stagger-line:nth-child(3){transition-delay:.30s;}
+
+/* SECOND VIDEO TEXT */
+.secondary-intro{
+  padding:150px 0 120px;
+  background:#f4f4f4;
+}
 
 /* WORKS */
 .section-title{
@@ -275,6 +245,19 @@ body{
   transform:translateY(0);
 }
 
+.work-title{
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:-.2px;
+}
+
+.work-desc{
+  font-size:13px;
+  opacity:.84;
+  margin-top:5px;
+  letter-spacing:.15px;
+}
+
 /* REVEAL */
 .reveal{
   opacity:0;
@@ -351,17 +334,11 @@ body{
     flex-wrap:wrap;
   }
 
-  .video-section{
-    margin-top:18px;
-  }
-
-  .video-description{
-    padding:0 20px;
-    font-size:16px;
-    margin-top:14px;
-  }
-
   .project-intro{
+    padding:100px 0 80px;
+  }
+
+  .secondary-intro{
     padding:100px 0 80px;
   }
 
@@ -418,6 +395,7 @@ body{
   </section>
 </div>
 
+<!-- MAIN VIDEO -->
 <section class="hero-video">
   <div class="hero-frame">
     <iframe
@@ -427,25 +405,13 @@ body{
     </iframe>
 
     <div class="hero-overlay">
-      <button class="hero-btn" onclick="openSound()">Sound on</button>
+      <button class="hero-btn" onclick="openSoundMain()">Sound on</button>
       <a class="hero-btn" href="#works">More works ↓</a>
     </div>
   </div>
 </section>
 
-<section class="video-section reveal" style="--offY: 0px;">
-  <div class="video-wrapper">
-    <iframe
-      src="https://player.vimeo.com/video/1171088587"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowfullscreen
-      title="Inspired by indie music">
-    </iframe>
-  </div>
-
-  <p class="video-description">Inspired by indie music</p>
-</section>
-
+<!-- MAIN VIDEO DESCRIPTION -->
 <section class="project-intro reveal-text">
   <div class="intro-container">
     <div class="intro-icon">✎</div>
@@ -458,13 +424,36 @@ body{
   </div>
 </section>
 
+<!-- SECOND VIDEO -->
+<section class="hero-video">
+  <div class="hero-frame">
+    <iframe
+      src="https://player.vimeo.com/video/1171088587?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+
+    <div class="hero-overlay">
+      <button class="hero-btn" onclick="openSoundSecond()">Sound on</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECOND VIDEO DESCRIPTION -->
+<section class="secondary-intro reveal-text">
+  <div class="intro-container">
+    <div class="stagger-text">
+      <span class="stagger-line">Inspired by indie music.</span>
+    </div>
+  </div>
+</section>
+
 <div class="container">
 
   <div class="section-title" id="works">Selected Works</div>
 
   <section class="works">
 
-    <!-- BIG MAIN CARD -->
     <div class="work s9 reveal" style="--offY: 0px;" onclick="openVideo('images/complete.mp4')">
       <video muted loop playsinline poster="images/poster complete.png"></video>
 
@@ -474,7 +463,6 @@ body{
       </div>
     </div>
 
-    <!-- OFFSET DOWN -->
     <div class="work s5 reveal" style="--offY: 90px;" onclick="openImage('images/phone 9110.png')">
       <img src="images/phone 9110.png" alt="Nokia 9110">
 
@@ -484,7 +472,6 @@ body{
       </div>
     </div>
 
-    <!-- OFFSET UP -->
     <div class="work s4 reveal" style="--offY: -70px;" onclick="openImage('images/ear.png')">
       <img src="images/ear.png" alt="Ear Illustration">
 
@@ -527,8 +514,12 @@ function openVideo(src){
   window.open(src);
 }
 
-function openSound(){
+function openSoundMain(){
   window.open("https://vimeo.com/1170682380");
+}
+
+function openSoundSecond(){
+  window.open("https://vimeo.com/1171088587");
 }
 
 /* reveal on scroll */
