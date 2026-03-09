@@ -48,12 +48,14 @@ body{
   letter-spacing:.1px;
 }
 
-/* FULL WIDTH VIDEO */
+/* FULL BLEED VIDEO */
 .hero-video{
   width:100vw;
   position:relative;
   left:50%;
-  transform:translateX(-50%);
+  right:50%;
+  margin-left:-50vw;
+  margin-right:-50vw;
   margin-top:40px;
 }
 
@@ -69,20 +71,18 @@ body{
   justify-content:center;
 }
 
-/* Vimeo cover fix + centered */
 .hero-frame iframe{
   position:absolute;
   top:50%;
   left:50%;
   width:100vw;
   height:56.25vw;
-  min-height:100vh;
   min-width:177.77vh;
-  transform:translate(-50%, -50%);
+  min-height:100vh;
+  transform:translate(-50%,-50%);
   border:0;
 }
 
-/* Cinematic vignette */
 .hero-frame::after{
   content:"";
   position:absolute;
@@ -95,7 +95,6 @@ body{
   pointer-events:none;
 }
 
-/* Hero overlay buttons */
 .hero-overlay{
   position:absolute;
   bottom:40px;
@@ -136,7 +135,7 @@ body{
   color:#111;
 }
 
-/* stagger text */
+/* STAGGER TEXT */
 .stagger-text{
   display:flex;
   flex-direction:column;
@@ -167,7 +166,7 @@ body{
 .reveal-text.in .stagger-line:nth-child(2){transition-delay:.18s;}
 .reveal-text.in .stagger-line:nth-child(3){transition-delay:.30s;}
 
-/* SECOND VIDEO CINEMATIC REVEAL */
+/* SECOND VIDEO REVEAL */
 .cinematic-video{
   opacity:0;
   transform:scale(.94) translateY(70px);
@@ -202,6 +201,8 @@ body{
 /* CARDS */
 .work{
   --offY:0px;
+  --revealX:0px;
+  --revealR:0deg;
   position:relative;
   overflow:hidden;
   border-radius:24px;
@@ -280,16 +281,12 @@ body{
   line-height:1;
 }
 
-.work:hover::after{
-  opacity:1;
-}
-
 .work:hover .work-info{
   opacity:1;
   transform:translateY(0);
 }
 
-/* REVEAL */
+/* STANDARD REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(calc(var(--offY) + 26px));
@@ -301,6 +298,27 @@ body{
 .reveal.in{
   opacity:1;
   transform:translateY(var(--offY));
+}
+
+/* CINEMATIC CARD REVEAL */
+.cinematic-card{
+  opacity:0;
+  transform:
+    translateX(var(--revealX))
+    translateY(calc(var(--offY) + 34px))
+    rotate(var(--revealR));
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(.2,.8,.2,1);
+  will-change:transform, opacity;
+}
+
+.cinematic-card.in{
+  opacity:1;
+  transform:
+    translateX(0)
+    translateY(var(--offY))
+    rotate(0deg);
 }
 
 /* FOOTER */
@@ -397,6 +415,8 @@ body{
 
   .work{
     --offY:0px !important;
+    --revealX:0px !important;
+    --revealR:0deg !important;
   }
 
   .work-info{
@@ -479,7 +499,7 @@ body{
 
   <section class="works">
 
-    <div class="work s9 reveal" style="--offY: 0px;" onclick="openVideo('images/complete.mp4')">
+    <div class="work s9 cinematic-card" style="--offY: 0px; --revealX:-60px; --revealR:-1.8deg;" onclick="openVideo('images/complete.mp4')">
       <video muted loop playsinline poster="images/poster complete.png"></video>
 
       <div class="work-info">
@@ -489,7 +509,7 @@ body{
       </div>
     </div>
 
-    <div class="work s5 reveal" style="--offY: 110px;" onclick="openImage('images/phone 9110.png')">
+    <div class="work s5 cinematic-card" style="--offY: 110px; --revealX:46px; --revealR:1.6deg;" onclick="openImage('images/phone 9110.png')">
       <img src="images/phone 9110.png" alt="Nokia 9110">
 
       <div class="work-info">
@@ -499,7 +519,7 @@ body{
       </div>
     </div>
 
-    <div class="work s4 reveal" style="--offY: 70px; margin-left:140px;" onclick="openImage('images/ear.png')">
+    <div class="work s4 cinematic-card" style="--offY: 70px; margin-left:140px; --revealX:34px; --revealR:-1.2deg;" onclick="openImage('images/ear.png')">
       <img src="images/ear.png" alt="Ear Illustration">
 
       <div class="work-info">
@@ -560,7 +580,7 @@ const io = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.15});
 
-document.querySelectorAll(".reveal, .reveal-text, .cinematic-video").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal, .reveal-text, .cinematic-video, .cinematic-card").forEach(el=>io.observe(el));
 </script>
 
 </body>
