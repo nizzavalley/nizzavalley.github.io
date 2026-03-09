@@ -181,6 +181,29 @@ body{
   transform:scale(1) translateY(0);
 }
 
+/* FULL WIDTH IMAGE BLOCK */
+.full-image{
+  width:100vw;
+  position:relative;
+  left:50%;
+  right:50%;
+  margin-left:-50vw;
+  margin-right:-50vw;
+  margin-top:80px;
+  height:85vh;
+  overflow:hidden;
+  background:#000;
+}
+
+.full-image img{
+  width:100%;
+  height:110%;
+  object-fit:cover;
+  display:block;
+  will-change:transform;
+  transform:translateY(0);
+}
+
 /* WORKS */
 .section-title{
   margin-top:40px;
@@ -286,7 +309,7 @@ body{
   transform:translateY(0);
 }
 
-/* STANDARD REVEAL */
+/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(calc(var(--offY) + 26px));
@@ -403,6 +426,12 @@ body{
     letter-spacing:.45px;
   }
 
+  .full-image{
+    height:46vh;
+    min-height:280px;
+    margin-top:50px;
+  }
+
   .works{
     grid-template-columns:1fr;
     gap:22px;
@@ -489,6 +518,24 @@ body{
 
     <div class="hero-overlay">
       <button class="hero-btn" onclick="openSecondVideoSound()">Sound on</button>
+    </div>
+  </div>
+</section>
+
+<!-- NOKIA FULL WIDTH IMAGE -->
+<section class="full-image parallax-block">
+  <img src="images/phone 9110.png" alt="Nokia 9110" class="parallax-media">
+</section>
+
+<!-- NOKIA DESCRIPTION -->
+<section class="project-intro reveal-text">
+  <div class="intro-container">
+    <div class="intro-icon">✎</div>
+
+    <div class="stagger-text">
+      <span class="stagger-line">A single-band Nokia mobile phone.</span>
+      <span class="stagger-line">Inspired by the visual language</span>
+      <span class="stagger-line">of the Matrix.</span>
     </div>
   </div>
 </section>
@@ -581,6 +628,29 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:0.15});
 
 document.querySelectorAll(".reveal, .reveal-text, .cinematic-video, .cinematic-card").forEach(el=>io.observe(el));
+
+/* subtle parallax for Nokia full-width image */
+const parallaxBlocks = document.querySelectorAll('.parallax-block');
+
+function updateParallax(){
+  parallaxBlocks.forEach(block => {
+    const media = block.querySelector('.parallax-media');
+    if(!media) return;
+
+    const rect = block.getBoundingClientRect();
+    const viewportH = window.innerHeight;
+
+    if(rect.bottom < 0 || rect.top > viewportH) return;
+
+    const progress = (rect.top + rect.height) / (viewportH + rect.height);
+    const offset = (progress - 0.5) * 60;
+    media.style.transform = `translateY(${offset}px)`;
+  });
+}
+
+window.addEventListener('scroll', updateParallax, { passive:true });
+window.addEventListener('resize', updateParallax);
+updateParallax();
 </script>
 
 </body>
