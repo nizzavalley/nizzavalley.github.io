@@ -32,17 +32,25 @@ body{
 }
 
 /* HERO TEXT */
+.hero-title{
+  background:#0d0d0d;
+  color:#f4f4f4;
+  border-radius:0 0 28px 28px;
+  padding:12px 0 8px;
+}
+
 .hero-title h1{
   font-size:clamp(56px,6vw,96px);
   font-weight:800;
   letter-spacing:-2px;
   line-height:.95;
+  color:#f4f4f4;
 }
 
 .hero-title p{
   margin-top:18px;
   font-size:18px;
-  color:rgba(0,0,0,.58);
+  color:rgba(255,255,255,.72);
   max-width:760px;
   line-height:1.55;
   letter-spacing:.1px;
@@ -395,6 +403,10 @@ body{
     padding:20px;
   }
 
+  .hero-title{
+    border-radius:0 0 20px 20px;
+  }
+
   .hero-frame{
     height:56vh;
     min-height:340px;
@@ -472,9 +484,7 @@ body{
 <div class="container">
   <section class="hero-title">
     <h1>Timur Nizamov</h1>
-    <p>
-      Motion designer & 3D illustrator creating cinematic visuals, playful characters and premium CGI for brands.
-    </p>
+    <p>motion designer and 3D illustrator.</p>
   </section>
 </div>
 
@@ -518,6 +528,19 @@ body{
 
     <div class="hero-overlay">
       <button class="hero-btn" onclick="openSecondVideoSound()">Sound on</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECOND VIDEO DESCRIPTION -->
+<section class="project-intro reveal-text">
+  <div class="intro-container">
+    <div class="intro-icon">✎</div>
+
+    <div class="stagger-text">
+      <span class="stagger-line">A demo video in the style of a</span>
+      <span class="stagger-line">promotional presentation of a</span>
+      <span class="stagger-line">cloud security system.</span>
     </div>
   </div>
 </section>
