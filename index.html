@@ -247,146 +247,6 @@ body{
   transform:translateY(0);
 }
 
-/* WORKS */
-.section-title{
-  margin-top:40px;
-  font-weight:700;
-  font-size:14px;
-  opacity:.55;
-  letter-spacing:.2px;
-}
-
-.works{
-  margin-top:28px;
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:36px;
-  align-items:start;
-}
-
-/* CARDS */
-.work{
-  --offY:0px;
-  --revealX:0px;
-  --revealR:0deg;
-  position:relative;
-  overflow:hidden;
-  border-radius:24px;
-  cursor:pointer;
-  transform:translateY(var(--offY));
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    box-shadow .45s ease;
-}
-
-.work:hover{
-  transform:translateY(calc(var(--offY) - 8px));
-  box-shadow:0 20px 60px rgba(0,0,0,.12);
-}
-
-.work img,
-.work video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  transition:transform 1.15s ease;
-}
-
-.work:hover img,
-.work:hover video{
-  transform:scale(1.05);
-}
-
-/* SIZES */
-.s9{grid-column:span 9;height:620px;}
-.s8{grid-column:span 8;height:600px;}
-.s6{grid-column:span 6;height:540px;}
-.s5{grid-column:span 5;height:520px;}
-.s4{grid-column:span 4;height:500px;}
-
-/* HOVER LABEL */
-.work::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:.35s ease;
-  pointer-events:none;
-}
-
-.work-info{
-  position:absolute;
-  top:20px;
-  left:20px;
-  opacity:0;
-  transform:translateY(10px);
-  transition:.35s cubic-bezier(.2,.8,.2,1);
-  z-index:3;
-}
-
-.work-label{
-  display:inline-flex;
-  align-items:center;
-  padding:16px 22px;
-  background:rgba(255,245,245,.86);
-  color:#111;
-  border-radius:20px;
-  border:1px solid rgba(0,0,0,.06);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-}
-
-.work-label .work-title{
-  font-size:18px;
-  font-weight:600;
-  letter-spacing:-0.2px;
-  line-height:1;
-}
-
-.work:hover .work-info{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(calc(var(--offY) + 26px));
-  transition:
-    opacity .9s ease,
-    transform .9s cubic-bezier(.2,.8,.2,1);
-}
-
-.reveal.in{
-  opacity:1;
-  transform:translateY(var(--offY));
-}
-
-/* CINEMATIC CARD REVEAL */
-.cinematic-card{
-  opacity:0;
-  transform:
-    translateX(var(--revealX))
-    translateY(calc(var(--offY) + 34px))
-    rotate(var(--revealR));
-  transition:
-    opacity 1s ease,
-    transform 1s cubic-bezier(.2,.8,.2,1);
-  will-change:transform, opacity;
-}
-
-.cinematic-card.in{
-  opacity:1;
-  transform:
-    translateX(0)
-    translateY(var(--offY))
-    rotate(0deg);
-}
-
 /* FOOTER */
 .footer{
   margin-top:100px;
@@ -478,38 +338,6 @@ body{
     min-height:280px;
     margin-top:50px;
   }
-
-  .works{
-    grid-template-columns:1fr;
-    gap:22px;
-  }
-
-  .s9,.s8,.s6,.s5,.s4{
-    grid-column:span 1;
-    height:340px;
-  }
-
-  .work{
-    --offY:0px !important;
-    --revealX:0px !important;
-    --revealR:0deg !important;
-  }
-
-  .work-info{
-    opacity:1;
-    transform:none;
-    top:16px;
-    left:16px;
-  }
-
-  .work-label{
-    padding:14px 18px;
-    border-radius:16px;
-  }
-
-  .work-label .work-title{
-    font-size:16px;
-  }
 }
 </style>
 </head>
@@ -536,7 +364,6 @@ body{
 
     <div class="hero-overlay">
       <button class="hero-btn" onclick="openSoundMain()">Sound on</button>
-      <a class="hero-btn" href="#works">More works ↓</a>
     </div>
   </div>
 </section>
@@ -601,43 +428,6 @@ body{
 </section>
 
 <div class="container">
-
-  <div class="section-title" id="works">Selected Works</div>
-
-  <section class="works">
-
-    <div class="work s9 cinematic-card" style="--offY: 0px; --revealX:-60px; --revealR:-1.8deg;" onclick="openVideo('images/complete.mp4')">
-      <video muted loop playsinline poster="images/poster complete.png"></video>
-
-      <div class="work-info">
-        <div class="work-label">
-          <div class="work-title">Drollstyle Characters</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="work s5 cinematic-card" style="--offY: 110px; --revealX:46px; --revealR:1.6deg;" onclick="openImage('images/phone 9110.png')">
-      <img src="images/phone 9110.png" alt="Nokia 9110">
-
-      <div class="work-info">
-        <div class="work-label">
-          <div class="work-title">Nokia 9110</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="work s4 cinematic-card" style="--offY: 70px; margin-left:140px; --revealX:34px; --revealR:-1.2deg;" onclick="openImage('images/ear.png')">
-      <img src="images/ear.png" alt="Ear Illustration">
-
-      <div class="work-info">
-        <div class="work-label">
-          <div class="work-title">Ear Illustration</div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
   <footer class="footer" id="contact">
     <div>
       <a href="https://t.me/badkids_FO" target="_blank">Telegram</a>
@@ -647,7 +437,6 @@ body{
 
     <div>© 2026 Timur Nizamov</div>
   </footer>
-
 </div>
 
 <div class="modal" id="modal">
@@ -687,7 +476,7 @@ const io = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.15});
 
-document.querySelectorAll(".reveal, .reveal-text, .cinematic-video, .cinematic-card").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal-text, .cinematic-video").forEach(el=>io.observe(el));
 
 /* subtle parallax for Nokia full-width image */
 const parallaxBlocks = document.querySelectorAll('.parallax-block');
