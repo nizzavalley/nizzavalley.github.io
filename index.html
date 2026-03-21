@@ -11,7 +11,6 @@
     :root{
       --bg:#f3f3ef;
       --surface:#ffffff;
-      --surface-2:#ecebe6;
       --text:#111111;
       --muted:rgba(17,17,17,.62);
       --line:rgba(17,17,17,.10);
@@ -41,7 +40,8 @@
       overflow-x:hidden;
     }
 
-    img{
+    img,
+    video{
       display:block;
       max-width:100%;
     }
@@ -60,36 +60,14 @@
     .hero{
       background:var(--hero);
       color:#f5f5f5;
-      padding:42px 0 52px;
+      padding:42px 0 56px;
     }
 
     .hero-inner{
-      min-height:72vh;
+      min-height:64vh;
       display:flex;
       flex-direction:column;
-      justify-content:space-between;
-      gap:48px;
-    }
-
-    .hero-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:24px;
-      flex-wrap:wrap;
-    }
-
-    .hero-mark{
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.52);
-    }
-
-    .hero-main{
-      max-width:900px;
-      padding-top:36px;
+      justify-content:center;
     }
 
     .hero-title{
@@ -97,16 +75,15 @@
       line-height:.92;
       letter-spacing:-.06em;
       font-weight:800;
-      margin-bottom:20px;
+      margin-bottom:18px;
       opacity:0;
       transform:translateY(20px);
       animation:fadeUp 1s var(--ease) forwards;
     }
 
     .hero-subtitle{
-      max-width:740px;
       font-size:clamp(18px, 2vw, 24px);
-      line-height:1.5;
+      line-height:1.45;
       color:rgba(255,255,255,.72);
       opacity:0;
       transform:translateY(18px);
@@ -114,97 +91,11 @@
       animation-delay:.16s;
     }
 
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      opacity:0;
-      transform:translateY(18px);
-      animation:fadeUp .9s var(--ease) forwards;
-      animation-delay:.28s;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      min-height:48px;
-      padding:0 18px;
-      border-radius:999px;
-      text-decoration:none;
-      font-size:14px;
-      font-weight:700;
-      border:1px solid transparent;
-      transition:transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease, opacity .25s ease;
-      cursor:pointer;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-    }
-
-    .btn-primary{
-      background:#fff;
-      color:#111;
-    }
-
-    .btn-secondary{
-      background:transparent;
-      color:#fff;
-      border-color:rgba(255,255,255,.18);
-    }
-
-    .hero-bottom{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:24px;
-      flex-wrap:wrap;
-      padding-top:24px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:rgba(255,255,255,.52);
-      font-size:14px;
-    }
-
     /* SECTIONS */
     .section{
       padding:110px 0;
     }
 
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      gap:24px;
-      align-items:flex-end;
-      margin-bottom:36px;
-      flex-wrap:wrap;
-    }
-
-    .section-kicker{
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:rgba(17,17,17,.42);
-      margin-bottom:12px;
-    }
-
-    .section-title{
-      font-size:clamp(34px, 4vw, 58px);
-      line-height:.98;
-      letter-spacing:-.05em;
-      font-weight:800;
-    }
-
-    .section-note{
-      max-width:420px;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:16px;
-    }
-
-    /* CATEGORY GRID */
     .category-grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -218,6 +109,7 @@
       cursor:pointer;
       user-select:none;
       isolation:isolate;
+      outline:none;
     }
 
     .stack-layer{
@@ -234,31 +126,26 @@
       will-change:transform;
     }
 
-    .stack-layer img{
+    .stack-layer img,
+    .stack-layer video{
       width:100%;
       height:100%;
       object-fit:cover;
     }
 
     .layer-back{
-      background:linear-gradient(180deg, #dad8d2 0%, #cbc8c0 100%);
       z-index:1;
     }
 
     .layer-front{
-      background:#111;
       z-index:2;
       overflow:hidden;
     }
 
-    /* Motion card behavior */
-    .motion-card .layer-front{
-      transform:translateY(0);
-    }
-
     .motion-card .layer-back{
       transform:translateY(12px) scale(.985);
-      opacity:.92;
+      opacity:.95;
+      background:#1a1a1a;
     }
 
     .motion-card:hover .layer-front{
@@ -270,14 +157,10 @@
       transform:translateY(54px) scale(.985);
     }
 
-    /* 3D card behavior */
-    .three-card .layer-front{
-      transform:translateY(0);
-    }
-
     .three-card .layer-back{
       transform:translateY(34px) scale(.982);
       opacity:1;
+      background:#ddd9d1;
     }
 
     .three-card:hover .layer-front{
@@ -294,62 +177,144 @@
       width:100%;
       height:100%;
       overflow:hidden;
+      background:#111;
     }
 
     .category-cover::after{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.14) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,.06) 0%, rgba(0,0,0,.18) 100%);
       pointer-events:none;
+      z-index:1;
     }
 
+    /* MOTION COVER */
     .motion-cover{
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.16), transparent 32%),
-        radial-gradient(circle at 80% 10%, rgba(255,255,255,.09), transparent 26%),
-        linear-gradient(135deg, #1e1e1e 0%, #0d0d0d 100%);
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 30%),
+        radial-gradient(circle at 80% 12%, rgba(255,255,255,.07), transparent 24%),
+        linear-gradient(135deg, #181818 0%, #0d0d0d 100%);
     }
 
-    .motion-cover .floating-shape{
+    .preview-mini{
       position:absolute;
-      border-radius:28px;
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+      border-radius:22px;
+      overflow:hidden;
       border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.06);
-      box-shadow:0 12px 40px rgba(0,0,0,.18);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 16px 40px rgba(0,0,0,.18);
+      z-index:0;
     }
 
-    .motion-cover .shape-1{
-      width:42%;
-      height:28%;
-      top:12%;
-      right:10%;
-      transform:rotate(-8deg);
-    }
-
-    .motion-cover .shape-2{
-      width:38%;
-      height:22%;
-      left:8%;
-      bottom:20%;
-      transform:rotate(8deg);
-    }
-
-    .motion-cover .shape-3{
-      width:28%;
-      height:16%;
-      right:16%;
-      bottom:10%;
-      transform:rotate(-3deg);
-    }
-
-    .three-cover img{
+    .preview-mini video,
+    .preview-mini img{
       width:100%;
       height:100%;
       object-fit:cover;
+    }
+
+    .motion-cover .preview-1{
+      width:54%;
+      height:34%;
+      top:12%;
+      right:8%;
+      transform:rotate(-8deg);
+    }
+
+    .motion-cover .preview-2{
+      width:46%;
+      height:30%;
+      left:8%;
+      bottom:12%;
+      transform:rotate(7deg);
+    }
+
+    .motion-cover .preview-3{
+      width:26%;
+      height:16%;
+      right:18%;
+      bottom:18%;
+      transform:rotate(-5deg);
+      background:rgba(255,255,255,.08);
+    }
+
+    .mini-ui{
+      width:100%;
+      height:100%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)),
+        linear-gradient(135deg, #2a2a2a 0%, #131313 100%);
+      position:relative;
+    }
+
+    .mini-ui::before,
+    .mini-ui::after{
+      content:"";
+      position:absolute;
+      left:10%;
+      right:10%;
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
+    }
+
+    .mini-ui::before{
+      top:28%;
+      height:16%;
+    }
+
+    .mini-ui::after{
+      top:56%;
+      height:12%;
+      opacity:.8;
+    }
+
+    /* 3D COVER */
+    .three-cover img.main-image{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.03);
+    }
+
+    .three-cover .thumb{
+      position:absolute;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 16px 40px rgba(0,0,0,.16);
+      z-index:0;
+      animation:floatThumb 5.2s ease-in-out infinite;
+    }
+
+    .three-cover .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .three-cover .thumb-1{
+      width:32%;
+      height:22%;
+      top:10%;
+      right:8%;
+      animation-delay:0s;
+    }
+
+    .three-cover .thumb-2{
+      width:28%;
+      height:18%;
+      left:8%;
+      bottom:14%;
+      animation-delay:.8s;
+    }
+
+    .three-cover .thumb-3{
+      width:26%;
+      height:18%;
+      right:16%;
+      bottom:20%;
+      animation-delay:1.4s;
     }
 
     .card-overlay{
@@ -399,17 +364,29 @@
       line-height:1;
       letter-spacing:-.05em;
       font-weight:800;
-      margin-bottom:12px;
-    }
-
-    .card-text{
-      font-size:16px;
-      line-height:1.6;
-      color:rgba(255,255,255,.72);
-      max-width:420px;
     }
 
     /* ABOUT */
+    .section-head{
+      margin-bottom:28px;
+    }
+
+    .section-kicker{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:rgba(17,17,17,.42);
+      margin-bottom:12px;
+    }
+
+    .section-title{
+      font-size:clamp(34px, 4vw, 58px);
+      line-height:.98;
+      letter-spacing:-.05em;
+      font-weight:800;
+    }
+
     .about-wrap{
       display:grid;
       grid-template-columns:1.15fr .85fr;
@@ -608,13 +585,6 @@
       font-weight:800;
     }
 
-    .modal-text{
-      color:var(--muted);
-      max-width:760px;
-      line-height:1.6;
-      font-size:16px;
-    }
-
     .gallery{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -655,13 +625,6 @@
       font-size:18px;
       font-weight:700;
       letter-spacing:-.02em;
-      margin-bottom:8px;
-    }
-
-    .gallery-text{
-      font-size:14px;
-      line-height:1.6;
-      color:var(--muted);
     }
 
     .reveal{
@@ -683,6 +646,15 @@
       to{
         opacity:1;
         transform:translateY(0);
+      }
+    }
+
+    @keyframes floatThumb{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-6px);
       }
     }
 
@@ -715,7 +687,7 @@
       }
 
       .hero-inner{
-        min-height:auto;
+        min-height:46vh;
       }
 
       .section{
@@ -759,6 +731,16 @@
         padding:18px;
         border-radius:22px;
       }
+
+      .motion-cover .preview-1{
+        width:58%;
+        height:30%;
+      }
+
+      .motion-cover .preview-2{
+        width:50%;
+        height:26%;
+      }
     }
   </style>
 </head>
@@ -766,94 +748,122 @@
 
   <header class="hero">
     <div class="container hero-inner">
-      <div class="hero-top">
-        <div class="hero-mark">Portfolio / 2026</div>
-      </div>
-
-      <div class="hero-main">
-        <h1 class="hero-title">Timur Nizamov</h1>
-        <p class="hero-subtitle">
-          Motion Designer and 3D Illustrator creating clean animations,
-          stylized visuals, and product-focused imagery with a minimal,
-          modern presentation.
-        </p>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">View work</a>
-        <a href="#contact" class="btn btn-secondary">Contact</a>
-      </div>
-
-      <div class="hero-bottom">
-        <div>Motion Design / 3D Illustration / Visual Storytelling</div>
-        <div>Available for freelance & collaborations</div>
-      </div>
+      <h1 class="hero-title">Timur Nizamov</h1>
+      <p class="hero-subtitle">motion designer & 3D illustrator</p>
     </div>
   </header>
 
   <main>
     <section class="section" id="work">
       <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <div class="section-kicker">Selected categories</div>
-            <h2 class="section-title">Two directions, one visual language.</h2>
-          </div>
-          <p class="section-note">
-            A compact portfolio structure focused on clarity. Choose a category to open a curated set of works.
-          </p>
-        </div>
-
         <div class="category-grid">
           <!-- MOTION -->
-          <article class="category-card motion-card reveal" tabindex="0" role="button" aria-label="Open Motion Design Animations" onclick="openModal('motion')" onkeydown="handleCardKey(event, 'motion')">
-            <div class="stack-layer layer-back"></div>
+          <article
+            class="category-card motion-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="Open Motion Design Animations"
+            onclick="openModal('motion')"
+            onkeydown="handleCardKey(event, 'motion')"
+          >
+            <div class="stack-layer layer-back">
+              <div class="category-cover motion-cover">
+                <div class="preview-mini preview-2">
+                  <iframe
+                    src="https://player.vimeo.com/video/1171829832?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+                    allow="autoplay; fullscreen"
+                    style="width:100%;height:100%;border:0;"
+                    title="Cloud Security preview">
+                  </iframe>
+                </div>
+
+                <div class="preview-mini preview-3">
+                  <div class="mini-ui"></div>
+                </div>
+              </div>
+            </div>
 
             <div class="stack-layer layer-front">
               <div class="category-cover motion-cover">
-                <div class="floating-shape shape-1"></div>
-                <div class="floating-shape shape-2"></div>
-                <div class="floating-shape shape-3"></div>
+                <div class="preview-mini preview-1">
+                  <iframe
+                    src="https://player.vimeo.com/video/1170682380?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+                    allow="autoplay; fullscreen"
+                    style="width:100%;height:100%;border:0;"
+                    title="LinguaGO preview">
+                  </iframe>
+                </div>
+
+                <div class="preview-mini preview-2">
+                  <iframe
+                    src="https://player.vimeo.com/video/1171829832?background=1&autoplay=1&loop=1&muted=1&autopause=0"
+                    allow="autoplay; fullscreen"
+                    style="width:100%;height:100%;border:0;"
+                    title="Cloud Security preview second">
+                  </iframe>
+                </div>
+
+                <div class="preview-mini preview-3">
+                  <div class="mini-ui"></div>
+                </div>
               </div>
 
               <div class="card-overlay">
                 <div class="card-meta">
                   <div class="card-index">01 / Category</div>
-                  <div class="card-pill">2 selected works</div>
+                  <div class="card-pill">2 works</div>
                 </div>
 
                 <div class="card-copy">
                   <h3 class="card-title">Motion Design Animations</h3>
-                  <p class="card-text">
-                    Product demos, interface-driven visuals, and presentation-style motion pieces with a clean and cinematic feel.
-                  </p>
                 </div>
               </div>
             </div>
           </article>
 
           <!-- 3D -->
-          <article class="category-card three-card reveal" tabindex="0" role="button" aria-label="Open 3D Works" onclick="openModal('three')" onkeydown="handleCardKey(event, 'three')">
+          <article
+            class="category-card three-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="Open 3D Works"
+            onclick="openModal('three')"
+            onkeydown="handleCardKey(event, 'three')"
+          >
             <div class="stack-layer layer-back">
-              <img src="images/X teeth brush two.png" alt="X teeth brush preview">
+              <div class="category-cover three-cover">
+                <img class="main-image" src="images/X teeth brush two.png" alt="X teeth brush two">
+                <div class="thumb thumb-1">
+                  <img src="images/phone 9110.png" alt="Phone 9110">
+                </div>
+              </div>
             </div>
 
             <div class="stack-layer layer-front">
               <div class="category-cover three-cover">
-                <img src="images/X teeth brush one.png" alt="X teeth brush one">
+                <img class="main-image" src="images/X teeth brush one.png" alt="X teeth brush one">
+
+                <div class="thumb thumb-1">
+                  <img src="images/X teeth brush tree.png" alt="X teeth brush tree">
+                </div>
+
+                <div class="thumb thumb-2">
+                  <img src="images/phone 9110.png" alt="Phone 9110 preview">
+                </div>
+
+                <div class="thumb thumb-3">
+                  <img src="images/X teeth brush two.png" alt="X teeth brush two preview">
+                </div>
               </div>
 
               <div class="card-overlay">
                 <div class="card-meta">
                   <div class="card-index">02 / Category</div>
-                  <div class="card-pill">3 selected works</div>
+                  <div class="card-pill">4 works</div>
                 </div>
 
                 <div class="card-copy">
                   <h3 class="card-title">3D Works</h3>
-                  <p class="card-text">
-                    Stylized product imagery, sculptural compositions, and polished renders presented in a minimal portfolio format.
-                  </p>
                 </div>
               </div>
             </div>
@@ -865,10 +875,8 @@
     <section class="section" id="about">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="section-kicker">About</div>
-            <h2 class="section-title">A focused visual practice.</h2>
-          </div>
+          <div class="section-kicker">About</div>
+          <h2 class="section-title">A focused visual practice.</h2>
         </div>
 
         <div class="about-wrap">
@@ -946,9 +954,6 @@
       <div class="modal-head">
         <div class="modal-kicker">Category</div>
         <h3 class="modal-title" id="motionModalTitle">Motion Design Animations</h3>
-        <p class="modal-text">
-          A small selection of motion-driven projects focused on presentation, timing, and product storytelling.
-        </p>
       </div>
 
       <div class="gallery">
@@ -962,9 +967,6 @@
           </div>
           <div class="gallery-copy">
             <h4 class="gallery-title">LinguaGO</h4>
-            <p class="gallery-text">
-              AI language learning concept presented as a clean SaaS-style motion piece.
-            </p>
           </div>
         </article>
 
@@ -978,9 +980,6 @@
           </div>
           <div class="gallery-copy">
             <h4 class="gallery-title">Cloud Security System</h4>
-            <p class="gallery-text">
-              Product-demo style visual designed with a premium tech presentation language.
-            </p>
           </div>
         </article>
       </div>
@@ -995,10 +994,6 @@
       <div class="modal-head">
         <div class="modal-kicker">Category</div>
         <h3 class="modal-title" id="threeModalTitle">3D Works</h3>
-        <p class="modal-text">
-          A set of 3D product visuals from the X teeth brush project. Make sure the PNG files are inside the
-          <strong>images</strong> folder and keep the filenames exactly the same.
-        </p>
       </div>
 
       <div class="gallery one-column">
@@ -1008,9 +1003,6 @@
           </div>
           <div class="gallery-copy">
             <h4 class="gallery-title">X teeth brush — One</h4>
-            <p class="gallery-text">
-              First image from the 3D works series.
-            </p>
           </div>
         </article>
 
@@ -1020,9 +1012,6 @@
           </div>
           <div class="gallery-copy">
             <h4 class="gallery-title">X teeth brush — Two</h4>
-            <p class="gallery-text">
-              Second image from the 3D works series.
-            </p>
           </div>
         </article>
 
@@ -1032,9 +1021,15 @@
           </div>
           <div class="gallery-copy">
             <h4 class="gallery-title">X teeth brush — Tree</h4>
-            <p class="gallery-text">
-              Third image from the 3D works series.
-            </p>
+          </div>
+        </article>
+
+        <article class="gallery-card">
+          <div class="gallery-media">
+            <img src="images/phone 9110.png" alt="Phone 9110">
+          </div>
+          <div class="gallery-copy">
+            <h4 class="gallery-title">Nokia 9110</h4>
           </div>
         </article>
       </div>
@@ -1082,6 +1077,7 @@
           modal.setAttribute('aria-hidden', 'true');
           document.body.style.overflow = '';
         });
+        document.body.style.overflow = '';
       }
     });
 
